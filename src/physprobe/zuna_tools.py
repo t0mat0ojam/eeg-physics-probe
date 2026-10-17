@@ -64,6 +64,13 @@ def run_parallel(groups, work: Path, seed: int, steps: int = 25, n_gpus: int = 1
             os.link(f, d / "in" / Path(f).name) if hasattr(os, "link") else shutil.copy(f, d / "in" / Path(f).name)
         procs.append((g, d, fifs, launch(d / "in", d / "out", d / "tmp", gpu=g % max(n_gpus, 1),
                                          seed=seed + 1000 * g, steps=steps, log_path=d / "zuna.log")))
+    import time as _time
+    t0 = _time.time()
+    while any(p.poll() is None for *_, p in procs):          # heartbeat so notebooks don't look frozen
+        _time.sleep(30)
+        el = (_time.time() - t0) / 60
+        if int(el * 2) % 10 == 0:
+            print(f"  ... ZUNA still running ({el:.0f} min so far)", flush=True)
     res, failures = {}, []
     for g, d, fifs, p in procs:
         rc = p.wait()
