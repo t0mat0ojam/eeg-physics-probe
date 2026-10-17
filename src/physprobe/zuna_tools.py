@@ -1,49 +1,73 @@
-"""Thin wrapper around zuna.reconstruct_fif: seeded, batched over many files in one call."""
+"""Run ZUNA 1.1 inference directly (same call as zuna.reconstruct_fif, minus the per-file figures).
+
+Each input .fif carries its own hidden electrodes in info['bads'] (ZUNA always masks those), so one
+call can cover many recordings with different masks. Several calls can run in parallel, one per GPU.
+"""
 from __future__ import annotations
 
-import contextlib
+import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 HIGHPASS = 0.5
 
 
-@contextlib.contextmanager
-def zuna_seed(seed: int, extra=()):
-    """reconstruct_fif has no seed argument; it runs eeg_eval.py with key=value overrides,
-    and that script seeds torch from `seed`. Append seed=<n> to that subprocess call."""
-    real = subprocess.run
-
-    def patched(cmd, *a, **k):
-        if isinstance(cmd, (list, tuple)) and any(str(c).endswith("eeg_eval.py") for c in cmd):
-            cmd = list(cmd) + [f"seed={seed}"] + list(extra)
-        return real(cmd, *a, **k)
-
-    subprocess.run = patched
-    try:
-        yield
-    finally:
-        subprocess.run = real
+def _paths():
+    import zuna
+    app = Path(zuna.__file__).parent / "inference/AY2l/lingua/apps/AY2latent_bci"
+    return app, app / "eeg_eval.py", app / "configs/config_infer_fif.yaml", app.parent.parent
 
 
-def reconstruct_batch(fifs, hidden, out: Path, seed: int = 0, steps: int = 25, gpu="0", extra=()):
-    """Run ZUNA once over all `fifs` (same hidden channels). Returns {name: (data, ch_names)}."""
+def launch(input_dir, output_dir, tmp_dir, gpu: int, seed: int, steps: int = 25, log_path=None):
+    """Start one ZUNA inference process on one GPU; returns the Popen handle."""
+    app, eeg_eval, config, lingua_root = _paths()
+    for d in (output_dir, tmp_dir):
+        Path(d).mkdir(parents=True, exist_ok=True)
+    ov = {
+        "config": config, "dump_dir": Path(tmp_dir).absolute(),
+        "inference_figures_dir": Path(tmp_dir).absolute(),
+        "data.data_dir": Path(input_dir).absolute(), "data.v4_recon_save_fif": "true",
+        "data.v4_recon_out_dir": Path(output_dir).absolute(), "data.v4_segment_sec": 5.0,
+        "data.v4_montage": "standard_1005", "data.v4_use_fif_annotations": "false",
+        "data.v4_recon_annotate_infill": "false", "data.v4_recon_save_preprocessed": "false",
+        "data.v4_bad_token_overlap": 0.0, "diffusion_cfg": 1.0, "diffusion_sample_steps": steps,
+        "data.v4_highpass_hz": HIGHPASS, "seed": seed,
+    }
+    cmd = [sys.executable, str(eeg_eval)] + [f"{k}={v}" for k, v in ov.items()]
+    env = os.environ.copy()
+    env["CUDA_VISIBLE_DEVICES"] = str(gpu)
+    env["WANDB_MODE"] = "disabled"
+    env["MASTER_PORT"] = str(29500 + int(gpu))     # separate rendezvous port per process
+    env["PYTHONPATH"] = os.pathsep.join([str(lingua_root), str(app), env.get("PYTHONPATH", "")]).rstrip(os.pathsep)
+    for k in [k for k in env if k.startswith("SLURM_")]:
+        del env[k]
+    out = open(log_path, "w") if log_path else subprocess.DEVNULL
+    return subprocess.Popen(cmd, env=env, stdout=out, stderr=subprocess.STDOUT)
+
+
+def run_parallel(groups, work: Path, seed: int, steps: int = 25, n_gpus: int = 1):
+    """groups: list of lists of .fif paths, one list per GPU. Returns {file name: (data, ch_names)}."""
     import mne
-    from zuna import reconstruct_fif
-    out = Path(out)
-    inp = out / "input"
-    shutil.rmtree(out, ignore_errors=True)
-    inp.mkdir(parents=True)
-    for f in fifs:
-        shutil.copy(f, inp / Path(f).name)
-    with zuna_seed(seed, extra):
-        reconstruct_fif(input_dir=str(inp), output_dir=str(out / "fif"), figures_dir=str(out / "fig"),
-                        tmp_dir=str(out / "tmp"), gpu_device=gpu, highpass_hz=HIGHPASS,
-                        montage="standard_1005", repair_channels=list(hidden),
-                        use_fif_annotations=False, annotate_infill=False, sample_steps=steps)
+    procs = []
+    for g, fifs in enumerate(groups):
+        if not fifs:
+            continue
+        d = Path(work) / f"gpu{g}"
+        shutil.rmtree(d, ignore_errors=True)
+        (d / "in").mkdir(parents=True)
+        for f in fifs:
+            os.link(f, d / "in" / Path(f).name) if hasattr(os, "link") else shutil.copy(f, d / "in" / Path(f).name)
+        procs.append((g, d, fifs, launch(d / "in", d / "out", d / "tmp", gpu=g % max(n_gpus, 1),
+                                         seed=seed + 1000 * g, steps=steps, log_path=d / "zuna.log")))
     res = {}
-    for f in fifs:
-        rec = mne.io.read_raw_fif(out / "fif" / "hybrid" / Path(f).name, preload=True, verbose="ERROR")
-        res[Path(f).name] = (rec.get_data(), rec.ch_names)
+    for g, d, fifs, p in procs:
+        rc = p.wait()
+        if rc != 0:
+            tail = (d / "zuna.log").read_text()[-3000:]
+            raise RuntimeError(f"ZUNA process on GPU {g} failed (exit {rc}):\n{tail}")
+        for f in fifs:
+            rec = mne.io.read_raw_fif(d / "out" / "hybrid" / Path(f).name, preload=True, verbose="ERROR")
+            res[Path(f).name] = (rec.get_data(), rec.ch_names)
     return res
