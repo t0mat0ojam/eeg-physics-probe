@@ -2,6 +2,8 @@
 
 Real trial      : k dipoles (random location/orientation) with rhythmic + 1/f time courses,
                   through the sphere head model, scaled to `rms_uv`, plus white sensor noise.
+Patterns trial  : k sources with the same time courses, but random smooth scalp patterns drawn from
+                  the ensemble covariance (same per-trial rank as real; not dipole fields).
 Surrogate trial : Gaussian in space with the *ensemble* spatial covariance of the real signal,
                   same temporal process, same scaling and noise. Any fixed linear spatial
                   predictor has the same expected error on both.
@@ -13,33 +15,51 @@ import numpy as np
 from . import synth
 
 
-def trial_cov_samples(L, k, n, rng):
-    """Spatial covariance of the signal part of n random k-source trials (analytic)."""
+AMP_SIGMA = 0.3                                   # log-normal source amplitude spread
+EA2 = float(np.exp(2 * AMP_SIGMA ** 2))           # E[a^2]
+
+
+def single_source_cov(L):
+    """E[l l^T] for one dipole at a uniformly random grid location with random orientation."""
     C, M, _ = L.shape
-    S = np.zeros((C, C))
-    for _ in range(n):
-        G = np.zeros((C, C))
-        for j in rng.choice(M, k, replace=False):
-            o = rng.normal(size=3)
-            o /= np.linalg.norm(o)
-            l = L[:, j] @ o * rng.lognormal(0, 0.3)
-            G += np.outer(l, l)
-        S += G / np.trace(G)            # each trial scaled to the same total power
-    return S / n
+    return np.einsum("cmi,dmi->cd", L, L) / (3 * M)
 
 
-def make_trial(lf, k, kind, seconds, rng, sig_cov=None, rms_uv=20.0, snr_db=20.0):
+def time_courses(k, T, rng):
+    tc = 0.7 * synth.rhythm(k, T, rng) + 0.3 * synth.pink(k, T, rng)
+    return tc / tc.std(1, keepdims=True)
+
+
+def make_trial(lf, k, kind, seconds, rng, S1, rms_uv=20.0, snr_db=20.0):
+    """One recording. All trials of a given k share ONE global gain (no per-trial rescaling),
+    so the three kinds have the same ensemble covariance k*E[a^2]*S1 by construction."""
+    L = lf["L"]
+    C, M, _ = L.shape
     T = int(seconds * synth.FS)
-    if kind == "real":
-        X, _ = synth.focal_sources(lf, k, T, rng)
+    w, V = np.linalg.eigh(S1)
+    A1 = V * np.sqrt(np.clip(w, 0, None))
+    if kind == "surrogate":
+        X = np.sqrt(k * EA2) * A1 @ time_courses(C, T, rng)
     else:
-        w, V = np.linalg.eigh(sig_cov)
-        A = V * np.sqrt(np.clip(w, 0, None))
-        Z = 0.7 * synth.rhythm(len(w), T, rng) + 0.3 * synth.pink(len(w), T, rng)
-        X = A @ Z
-    X *= rms_uv * 1e-6 / X.std()
-    noise = rng.normal(size=X.shape) * X.std() * 10 ** (-snr_db / 20)
-    return X + noise, X.std() ** 2 * 10 ** (-snr_db / 10)
+        if kind == "real":
+            locs = rng.integers(0, M, k)
+            o = rng.normal(size=(k, 3))
+            o /= np.linalg.norm(o, axis=1, keepdims=True)
+            G = np.einsum("cki,ki->ck", L[:, locs], o)
+        elif kind == "patterns":
+            G = A1 @ rng.normal(size=(C, k))
+        else:
+            raise ValueError(kind)
+        X = (G * rng.lognormal(0, AMP_SIGMA, size=k)) @ time_courses(k, T, rng)
+    gain = rms_uv * 1e-6 / np.sqrt(k * EA2 * np.trace(S1) / C)
+    noise_sd = rms_uv * 1e-6 * 10 ** (-snr_db / 20)
+    return gain * X + noise_sd * rng.normal(size=(C, T))
+
+
+def total_cov(S1, snr_db=20.0):
+    """Covariance (up to scale) of any kind of trial, signal + sensor noise."""
+    C = len(S1)
+    return S1 / np.trace(S1) + 10 ** (-snr_db / 10) * np.eye(C) / C
 
 
 def masks(pos, n_masks, n_hidden, rng, kind):

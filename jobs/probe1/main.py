@@ -43,12 +43,11 @@ try:
 
     # trials: same for every mask, so per-mask results are paired
     trials, meta = {}, []
-    sig_cov = {}
+    S1 = probe.single_source_cov(L)
     for k in cfg["ks"]:
-        sig_cov[k] = probe.trial_cov_samples(L, k, cfg["cov_samples"], rng)
-        for kind in ("real", "surrogate"):
+        for kind in cfg["kinds"]:
             for i in range(cfg["n_trials"]):
-                X, noise_var = probe.make_trial(lf, k, kind, cfg["seconds"], rng, sig_cov[k])
+                X = probe.make_trial(lf, k, kind, cfg["seconds"], rng, S1)
                 name = f"k{k}_{kind}_{i:03d}"
                 trials[name] = X
                 meta.append(dict(name=name, k=k, kind=kind))
@@ -62,8 +61,8 @@ try:
     log["setup_min"] = (time.time() - t0) / 60
     save_log()
 
-    # linear references need the total covariance (signal + noise) per k
-    noise_frac = 10 ** (-20 / 10)
+    # linear references: best linear uses the true total covariance (same for every k and kind)
+    tot = probe.total_cov(S1)
     lmin = L.reshape(C, -1)
     mn_cov = lmin @ lmin.T
     mn_cov = mn_cov / np.trace(mn_cov) + 1e-2 * np.eye(C) / C
@@ -88,11 +87,10 @@ try:
             from physprobe.zuna_tools import reconstruct_batch
             recs = reconstruct_batch(fifs, hidden, work / "zuna", seed=100 + mi,
                                      steps=cfg["steps"], gpu="0")
-        W = {"spline": probe.spline_W(pos, V, H), "min-norm": probe.linear_W(mn_cov, V, H)}
+        W = {"spline": probe.spline_W(pos, V, H), "min-norm": probe.linear_W(mn_cov, V, H),
+             "best-linear": probe.linear_W(tot, V, H)}
         for m in meta:
             n, k = m["name"], m["k"]
-            tot = sig_cov[k] / np.trace(sig_cov[k]) + noise_frac * np.eye(C) / C
-            W["best-linear"] = probe.linear_W(tot, V, H)
             truth = truth_hp[n]
             preds = []
             for c in range(cfg["copies"]):

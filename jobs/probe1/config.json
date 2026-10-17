@@ -9,7 +9,6 @@
  "copies": 2,
  "seconds": 10,
  "steps": 25,
- "cov_samples": 2000,
  "masks": {
   "scattered": [
    [
@@ -213,5 +212,10 @@
     "P6"
    ]
   ]
- }
+ },
+ "kinds": [
+  "real",
+  "patterns",
+  "surrogate"
+ ]
 }
