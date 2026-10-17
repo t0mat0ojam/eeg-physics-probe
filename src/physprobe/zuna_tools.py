@@ -39,7 +39,10 @@ def launch(input_dir, output_dir, tmp_dir, gpu: int, seed: int, steps: int = 25,
     env = os.environ.copy()
     env["CUDA_VISIBLE_DEVICES"] = str(gpu)
     env["WANDB_MODE"] = "disabled"
-    env["MASTER_PORT"] = str(29500 + int(gpu))     # separate rendezvous port per process
+    # Pretend to be a 1-process torchrun job so lingua uses OUR port (it otherwise derives the same
+    # port for every process from SLURM_JOB_ID, and two processes on one machine collide).
+    env.update(LOCAL_RANK="0", RANK="0", WORLD_SIZE="1", LOCAL_WORLD_SIZE="1",
+               MASTER_ADDR="127.0.0.1", MASTER_PORT=str(29500 + 7 * int(gpu)))
     env["PYTHONPATH"] = os.pathsep.join([str(lingua_root), str(app), env.get("PYTHONPATH", "")]).rstrip(os.pathsep)
     for k in [k for k in env if k.startswith("SLURM_")]:
         del env[k]
@@ -47,7 +50,7 @@ def launch(input_dir, output_dir, tmp_dir, gpu: int, seed: int, steps: int = 25,
     return subprocess.Popen(cmd, env=env, stdout=out, stderr=subprocess.STDOUT)
 
 
-def run_parallel(groups, work: Path, seed: int, steps: int = 25, n_gpus: int = 1):
+def run_parallel(groups, work: Path, seed: int, steps: int = 25, n_gpus: int = 1, log_dir=None):
     """groups: list of lists of .fif paths, one list per GPU. Returns {file name: (data, ch_names)}."""
     import mne
     procs = []
@@ -61,9 +64,13 @@ def run_parallel(groups, work: Path, seed: int, steps: int = 25, n_gpus: int = 1
             os.link(f, d / "in" / Path(f).name) if hasattr(os, "link") else shutil.copy(f, d / "in" / Path(f).name)
         procs.append((g, d, fifs, launch(d / "in", d / "out", d / "tmp", gpu=g % max(n_gpus, 1),
                                          seed=seed + 1000 * g, steps=steps, log_path=d / "zuna.log")))
-    res = {}
+    res, failures = {}, []
     for g, d, fifs, p in procs:
         rc = p.wait()
+        if log_dir is not None:
+            Path(log_dir).mkdir(parents=True, exist_ok=True)
+            txt = (d / "zuna.log").read_text(errors="replace")
+            (Path(log_dir) / f"zuna_gpu{g}_tail.log").write_text(txt[-20000:])
         if rc != 0:
             tail = (d / "zuna.log").read_text()[-3000:]
             raise RuntimeError(f"ZUNA process on GPU {g} failed (exit {rc}):\n{tail}")
