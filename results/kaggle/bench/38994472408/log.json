@@ -1,0 +1,102 @@
+{
+ "config": {
+  "seed": 17,
+  "kinds": [
+   "real",
+   "patterns",
+   "surrogate"
+  ],
+  "seconds": 10,
+  "steps": 25,
+  "n_gpus": 2,
+  "masks": {
+   "scattered": [
+    [
+     5,
+     8,
+     12,
+     15,
+     16,
+     17,
+     22,
+     23,
+     26,
+     31,
+     32,
+     40,
+     41,
+     49,
+     53,
+     55
+    ]
+   ],
+   "patch": [
+    [
+     6,
+     12,
+     13,
+     19,
+     20,
+     41,
+     45,
+     52,
+     53,
+     54,
+     58,
+     59
+    ]
+   ]
+  },
+  "mask_names": {
+   "scattered": [
+    [
+     "FC4",
+     "C3",
+     "C4",
+     "CP3",
+     "CP1",
+     "CPz",
+     "Fpz",
+     "Fp2",
+     "AFz",
+     "F3",
+     "F1",
+     "T7",
+     "T8",
+     "P1",
+     "P6",
+     "PO7"
+    ]
+   ],
+   "patch": [
+    [
+     "FC6",
+     "C4",
+     "C6",
+     "CP4",
+     "CP6",
+     "T8",
+     "TP8",
+     "P4",
+     "P6",
+     "P8",
+     "PO4",
+     "PO8"
+    ]
+   ]
+  },
+  "ks": [
+   1
+  ],
+  "n_trials": 8,
+  "copies": 2,
+  "files_per_gpu_per_chunk": 48
+ },
+ "mock": false,
+ "chunks": [],
+ "n_units": 48,
+ "setup_min": 0.2642570694287618,
+ "ok": false,
+ "error": "Traceback (most recent call last):\n  File \"/kaggle/temp_code/src/physprobe/run_probe.py\", line 88, in run\n    recs = run_parallel(groups, work / \"zuna\", seed=cfg[\"seed\"] * 100 + ci, steps=cfg[\"steps\"], n_gpus=n_gpus)\n  File \"/kaggle/temp_code/src/physprobe/zuna_tools.py\", line 69, in run_parallel\n    raise RuntimeError(f\"ZUNA process on GPU {g} failed (exit {rc}):\\n{tail}\")\nRuntimeError: ZUNA process on GPU 1 failed (exit 1):\nSignal handler installed.\nWARNING: Setting MKL_SERVICE_FORCE_INTEL to GNU\nWARNING: Setting OMP_NUM_THREADS to 1\nWARNING: Setting MKL_NUM_THREADS to 1\nWARNING: Setting ENABLE_INTRA_NODE_COMM to 1\nWARNING: Setting TORCH_NCCL_AVOID_RECORD_STREAMS to 1\nWARNING: Setting NCCL_IB_TIMEOUT to 22\nWARNING: Setting NCCL_DEBUG to INFO\nWARNING: Setting TORCH_NCCL_ASYNC_ERROR_HANDLING to 1\nWARNING: Setting TRITON_CACHE_DIR to /tmp/tmpl1j3j427\nSingle GPU job\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_eval.py\", line 2224, in <module>\n    main()\n    ~~~~^^\n  File \"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_eval.py\", line 2218, in main\n    handle = init_model(cfig)\n  File \"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_eval.py\", line 1334, in init_model\n    setup_torch_distributed(args.distributed, device=device)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/lingua/distributed.py\", line 285, in setup_torch_distributed\n    torch.distributed.init_process_group(init_method=\"env://\", backend=\"nccl\" if device.type == \"cuda\" else \"gloo\")\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/c10d_logger.py\", line 83, in wrapper\n    return func(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/c10d_logger.py\", line 97, in wrapper\n    func_return = func(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/distributed_c10d.py\", line 1831, in init_process_group\n    store, rank, world_size = next(rendezvous_iterator)\n                              ~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/rendezvous.py\", line 280, in _env_rendezvous_handler\n    store = _create_c10d_store(\n        master_addr, master_port, rank, world_size, timeout, use_libuv\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/rendezvous.py\", line 199, in _create_c10d_store\n    return TCPStore(\n        host_name=hostname,\n    ...<5 lines>...\n        use_libuv=use_libuv,\n    )\ntorch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 28805, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use\n\n",
+ "total_min": 36.82715559800466
+}

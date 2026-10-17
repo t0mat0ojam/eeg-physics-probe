@@ -1,0 +1,57 @@
+[{"stream_name":"stdout","time":4.36159684,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 401.0/401.0 kB 2.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":2210.463745109,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":2210.463799445,"data":"  File \"/kaggle/temp_code/src/physprobe/run_probe.py\", line 88, in run\n"}
+,{"stream_name":"stdout","time":2210.463805376,"data":"    recs = run_parallel(groups, work / \"zuna\", seed=cfg[\"seed\"] * 100 + ci, steps=cfg[\"steps\"], n_gpus=n_gpus)\n"}
+,{"stream_name":"stdout","time":2210.463810725,"data":"  File \"/kaggle/temp_code/src/physprobe/zuna_tools.py\", line 69, in run_parallel\n"}
+,{"stream_name":"stdout","time":2210.463815075,"data":"    raise RuntimeError(f\"ZUNA process on GPU {g} failed (exit {rc}):\\n{tail}\")\n"}
+,{"stream_name":"stdout","time":2210.463820145,"data":"RuntimeError: ZUNA process on GPU 1 failed (exit 1):\n"}
+,{"stream_name":"stdout","time":2210.463824947,"data":"Signal handler installed.\n"}
+,{"stream_name":"stdout","time":2210.463829408,"data":"WARNING: Setting MKL_SERVICE_FORCE_INTEL to GNU\n"}
+,{"stream_name":"stdout","time":2210.46383398,"data":"WARNING: Setting OMP_NUM_THREADS to 1\n"}
+,{"stream_name":"stdout","time":2210.463838672,"data":"WARNING: Setting MKL_NUM_THREADS to 1\n"}
+,{"stream_name":"stdout","time":2210.463843404,"data":"WARNING: Setting ENABLE_INTRA_NODE_COMM to 1\n"}
+,{"stream_name":"stdout","time":2210.46384824,"data":"WARNING: Setting TORCH_NCCL_AVOID_RECORD_STREAMS to 1\n"}
+,{"stream_name":"stdout","time":2210.463853073,"data":"WARNING: Setting NCCL_IB_TIMEOUT to 22\n"}
+,{"stream_name":"stdout","time":2210.463857671,"data":"WARNING: Setting NCCL_DEBUG to INFO\n"}
+,{"stream_name":"stdout","time":2210.46386225,"data":"WARNING: Setting TORCH_NCCL_ASYNC_ERROR_HANDLING to 1\n"}
+,{"stream_name":"stdout","time":2210.463866949,"data":"WARNING: Setting TRITON_CACHE_DIR to /tmp/tmpl1j3j427\n"}
+,{"stream_name":"stdout","time":2210.463871575,"data":"Single GPU job\n"}
+,{"stream_name":"stdout","time":2210.463876101,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":2210.463881088,"data":"  File \"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_eval.py\", line 2224, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":2210.463886665,"data":"    main()\n"}
+,{"stream_name":"stdout","time":2210.463891167,"data":"    ~~~~^^\n"}
+,{"stream_name":"stdout","time":2210.46389583,"data":"  File \"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_eval.py\", line 2218, in main\n"}
+,{"stream_name":"stdout","time":2210.463900894,"data":"    handle = init_model(cfig)\n"}
+,{"stream_name":"stdout","time":2210.463905541,"data":"  File \"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_eval.py\", line 1334, in init_model\n"}
+,{"stream_name":"stdout","time":2210.463910603,"data":"    setup_torch_distributed(args.distributed, device=device)\n"}
+,{"stream_name":"stdout","time":2210.463915222,"data":"    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":2210.463920092,"data":"  File \"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/lingua/distributed.py\", line 285, in setup_torch_distributed\n"}
+,{"stream_name":"stdout","time":2210.463925563,"data":"    torch.distributed.init_process_group(init_method=\"env://\", backend=\"nccl\" if device.type == \"cuda\" else \"gloo\")\n"}
+,{"stream_name":"stdout","time":2210.46394705,"data":"    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":2210.463964962,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/c10d_logger.py\", line 83, in wrapper\n"}
+,{"stream_name":"stdout","time":2210.463969593,"data":"    return func(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":2210.463978709,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/c10d_logger.py\", line 97, in wrapper\n"}
+,{"stream_name":"stdout","time":2210.46398331,"data":"    func_return = func(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":2210.463987346,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/distributed_c10d.py\", line 1831, in init_process_group\n"}
+,{"stream_name":"stdout","time":2210.463992015,"data":"    store, rank, world_size = next(rendezvous_iterator)\n"}
+,{"stream_name":"stdout","time":2210.463996133,"data":"                              ~~~~^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":2210.464000235,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/rendezvous.py\", line 280, in _env_rendezvous_handler\n"}
+,{"stream_name":"stdout","time":2210.46400463,"data":"    store = _create_c10d_store(\n"}
+,{"stream_name":"stdout","time":2210.46400888,"data":"        master_addr, master_port, rank, world_size, timeout, use_libuv\n"}
+,{"stream_name":"stdout","time":2210.46401324,"data":"    )\n"}
+,{"stream_name":"stdout","time":2210.464017401,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/distributed/rendezvous.py\", line 199, in _create_c10d_store\n"}
+,{"stream_name":"stdout","time":2210.464021769,"data":"    return TCPStore(\n"}
+,{"stream_name":"stdout","time":2210.464026033,"data":"        host_name=hostname,\n"}
+,{"stream_name":"stdout","time":2210.464030076,"data":"    ...\u003c5 lines\u003e...\n"}
+,{"stream_name":"stdout","time":2210.464034168,"data":"        use_libuv=use_libuv,\n"}
+,{"stream_name":"stdout","time":2210.464038058,"data":"    )\n"}
+,{"stream_name":"stdout","time":2210.464042064,"data":"torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 28805, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use\n"}
+,{"stream_name":"stdout","time":2210.464048386,"data":"\n"}
+,{"stream_name":"stdout","time":2210.464052505,"data":"\n"}
+,{"stream_name":"stderr","time":2213.188320305,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":2213.188346357,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":2213.404827455,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":2213.404850327,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":2214.126087968,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":2214.932231684,"data":"[NbConvertApp] Writing 289248 bytes to __results__.html\n"}
+]
