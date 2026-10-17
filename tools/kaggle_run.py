@@ -65,7 +65,7 @@ def main():
         raise SystemExit("Could not determine the Kaggle username; set the KAGGLE_USERNAME secret.")
 
     try:  # weekly GPU quota; 0 or an error usually means the Kaggle account is not phone-verified
-        q = api.get_accelerator_quota_statistics() if hasattr(api, "get_accelerator_quota_statistics") else None
+        q = api.quota_view()
         print("accelerator quota:", q, flush=True)
     except Exception as e:
         q = f"unavailable: {e}"
