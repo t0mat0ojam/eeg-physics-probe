@@ -1,9 +1,8 @@
 {
- "seed": 17,
+ "seed": 2027,
  "kinds": [
   "real",
-  "patterns",
-  "surrogate"
+  "patterns"
  ],
  "seconds": 10,
  "steps": 25,
@@ -214,10 +213,15 @@
  },
  "ks": [
   1,
-  4,
-  16
+  2,
+  4
  ],
- "n_trials": 10,
- "copies": 2,
- "files_per_gpu_per_chunk": 60
+ "n_trials": {
+  "1": 200,
+  "2": 100,
+  "4": 100
+ },
+ "copies": 1,
+ "files_per_gpu_per_chunk": 200,
+ "masks_per_trial": 1
 }

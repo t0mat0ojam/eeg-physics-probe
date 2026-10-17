@@ -66,3 +66,37 @@ channel contains. Consequences for this study (decided before any probe data):
    the H1 band is the range of physics-use scores of a family of linear smoothers (splines, IDW,
    best linear, smoothed linear), estimated offline with large n (`experiments/null_band.py`);
    the H2 reference is an oracle RAP-MUSIC model with the true lead field.
+
+## Probe 1 — FINAL settings and decision rules (17 Oct 2026; supersedes the draft above; committed before the run)
+
+**Protocol.** Leak-proof input (visible-average reference, hidden channels zero-filled), shape error
+E = mean over hidden channels and the two 5 s segments of (1 − r). One mask per recording, cycled
+identically across kinds (masks in `jobs/probe1/config.json`; T9/T10/Iz never hidden).
+ZUNA 1.1.6, 25 steps, one posterior sample, 2 × T4 (Kaggle). Seed 2027.
+
+**Sample.** k = 1: 200 real + 200 patterns recordings (primary); k = 2 and k = 4: 100 + 100 each.
+10 s recordings, 256 Hz, 64 channels, 20 dB sensor noise.
+
+**Score.** score_m = mean_patterns(E_m − E_spline) − mean_real(E_m − E_spline), all masks pooled,
+95% bootstrap CI over recordings (5000 resamples).
+
+**Reference values fixed in advance** (`results/null_band.json`, n = 400 per kind, same protocol):
+
+| k | H1 band: linear smoothers (IDW, best linear, smoothed linear; splines = 0) | H2 reference: oracle physics (RAP-MUSIC) |
+|---|---|---|
+| 1 | −0.029 … +0.027 | +0.265 |
+| 2 | −0.017 … +0.037 | +0.151 |
+| 4 | −0.014 … +0.023 | +0.091 |
+
+**Decision (k = 1, primary).**
+- **H2 — uses head physics beyond any smoother:** lower CI bound of ZUNA's score > +0.027 (top of the
+  H1 band) **and** ZUNA's score at k = 1 > its score at k = 4.
+- **H1 — behaves like a smoother:** upper CI bound < +0.060 (i.e. ZUNA exceeds the best smoother by less
+  than ~1/8 of the oracle's physics use).
+- Otherwise **inconclusive**. In every case we also report ZUNA's score as a fraction of the oracle's.
+
+**Validity check (pre-specified).** If ZUNA's mean shape error on real k = 1 recordings exceeds that of
+IDW (offline: 0.222), the leak-proof input is judged to have broken ZUNA and the run is not interpreted.
+
+**Secondary.** Scores per mask type (scattered / patch) and for k = 2; dose–response across k = 1, 2, 4;
+ZUNA vs splines and vs best linear on real recordings.

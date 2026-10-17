@@ -49,10 +49,11 @@ def run(cfg: dict, out: Path, mock: bool = False):
         trials = []
         M = L.shape[1]
         for k in cfg["ks"]:
+            nk = cfg["n_trials"][str(k)] if isinstance(cfg["n_trials"], dict) else cfg["n_trials"]
             # stratified source locations: walk through shuffled copies of the whole grid
-            loc_stream = np.concatenate([rng.permutation(M) for _ in range(k * cfg["n_trials"] // M + 1)])
+            loc_stream = np.concatenate([rng.permutation(M) for _ in range(k * nk // M + 1)])
             for kind in cfg["kinds"]:
-                for i in range(cfg["n_trials"]):
+                for i in range(nk):
                     locs = loc_stream[i * k:(i + 1) * k] if kind == "real" else None
                     X = probe.make_trial(lf, k, kind, cfg["seconds"], rng, S1, locs=locs).astype(np.float32)
                     trials.append(dict(name=f"k{k}_{kind}_{i:03d}", i=i, k=k, kind=kind, X=X, hp=probe.highpass(X.astype(float))))
