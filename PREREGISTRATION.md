@@ -122,3 +122,18 @@ expectation signature), but on these synthetic recordings it does not use that k
 electrodes better than splines. Candidate explanations to test next, each pre-registered separately:
 (a) one diffusion sample instead of a posterior mean; (b) synthetic recordings too clean / unlike
 training data; (c) the leak-proof input itself.
+
+## Probe 2 — diagnostic: why was ZUNA worse than splines on realistic recordings? (17 Oct 2026, before the run)
+
+Run on Colab (1 × T4), `jobs/probe2/config_A.json`, `config_B.json`; same leak-proof protocol and masks.
+- **Part A (sampling):** 18 *real* k = 1 recordings (clean, as in probe 1), **4 ZUNA samples each**; ZUNA's
+  prediction = mean of the 4 normalised samples (single-sample error also kept).
+- **Part B (realism):** 18 *real_bg* recordings: one focal dipole plus background activity from 200
+  random dipoles with 1/f time courses at equal expected power (closer to real EEG), 4 samples each.
+
+**Readout:** paired difference in shape error, ZUNA(mean of 4) − splines, 95% bootstrap CI.
+- Part A: CI upper bound ≤ 0 → explanation (a) "one sample, not a posterior mean" is **supported**
+  (averaging brings ZUNA to at least spline level); CI lower bound > 0 → (a) **not sufficient**.
+- Part B: same rule for explanation (b) "recordings unlike training data".
+- Otherwise inconclusive (n is small; this is a diagnostic, not a confirmatory test).
+Neither part changes the probe-1 outcome recorded above.

@@ -15,6 +15,7 @@ import numpy as np
 from . import synth
 
 
+N_BG = 200                                        # background dipoles in 'real_bg'
 AMP_SIGMA = 0.3                                   # log-normal source amplitude spread
 EA2 = float(np.exp(2 * AMP_SIGMA ** 2))           # E[a^2]
 
@@ -40,6 +41,19 @@ def make_trial(lf, k, kind, seconds, rng, S1, rms_uv=20.0, snr_db=20.0, locs=Non
     A1 = V * np.sqrt(np.clip(w, 0, None))
     if kind == "surrogate":
         X = np.sqrt(k * EA2) * A1 @ time_courses(C, T, rng)
+    elif kind == "real_bg":
+        # k focal dipoles (as "real") + background: N_BG random dipoles with 1/f time courses,
+        # scaled to the same expected power as the focal part (more like real EEG)
+        locs = rng.integers(0, M, k) if locs is None else np.asarray(locs)
+        o = rng.normal(size=(k, 3)); o /= np.linalg.norm(o, axis=1, keepdims=True)
+        G = np.einsum("cki,ki->ck", L[:, locs], o)
+        Xf = (G * rng.lognormal(0, AMP_SIGMA, size=k)) @ time_courses(k, T, rng)
+        bl = rng.integers(0, M, N_BG)
+        ob = rng.normal(size=(N_BG, 3)); ob /= np.linalg.norm(ob, axis=1, keepdims=True)
+        Gb = np.einsum("cki,ki->ck", L[:, bl], ob)
+        pb = synth.pink(N_BG, T, rng, fmin=1.0)
+        Xb = Gb @ pb * np.sqrt(k * EA2 / N_BG)
+        X = Xf + Xb
     else:
         if kind == "real":
             locs = rng.integers(0, M, k) if locs is None else np.asarray(locs)
