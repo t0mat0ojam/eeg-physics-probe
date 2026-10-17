@@ -1,0 +1,202 @@
+Signal handler installed.
+WARNING: Setting MKL_SERVICE_FORCE_INTEL to GNU
+WARNING: Setting OMP_NUM_THREADS to 1
+WARNING: Setting MKL_NUM_THREADS to 1
+WARNING: Setting ENABLE_INTRA_NODE_COMM to 1
+WARNING: Setting TORCH_NCCL_AVOID_RECORD_STREAMS to 1
+WARNING: Setting NCCL_IB_TIMEOUT to 22
+WARNING: Setting NCCL_DEBUG to INFO
+WARNING: Setting TORCH_NCCL_ASYNC_ERROR_HANDLING to 1
+WARNING: Setting TRITON_CACHE_DIR to /tmp/tmpm5b5lw7r
+[W1017 03:02:40.878372017 ProcessGroupNCCL.cpp:932] Warning: TORCH_NCCL_AVOID_RECORD_STREAMS is the default now, this environment variable is thus deprecated. (function operator())
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:root:[warmup] pad_packed_seqlen=False: real seqlens vary, so this single-length warm-up will NOT prevent recompiles at serve time.
+WARNING:root:[warmup] skipped due to error: NameError: name 'timer' is not defined
+/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_data.py:416: UserWarning: Channel positions out of bounds detected!
+  Positions below min: 0 elements
+  Positions above max: 9 elements
+  xyz_min: [-0.11999999731779099, -0.11999999731779099, -0.11999999731779099]
+  xyz_max: [0.11999999731779099, 0.11999999731779099, 0.11999999731779099]
+  chan_pos range: [[-0.08772225677967072, -0.0885864868760109, -0.007711907383054495], [0.08372876793146133, 0.11910179257392883, 0.14154914021492004]]
+  warnings.warn(
+[rank0]:W1017 03:04:01.414000 43 torch/_inductor/utils.py:1731] [12/0] Not enough SMs to use max_autotune_gemm mode
+/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_data.py:416: UserWarning: Channel positions out of bounds detected!
+  Positions below min: 0 elements
+  Positions above max: 9 elements
+  xyz_min: [-0.11999999731779099, -0.11999999731779099, -0.11999999731779099]
+  xyz_max: [0.11999999731779099, 0.11999999731779099, 0.11999999731779099]
+  chan_pos range: [[-0.08772225677967072, -0.0885864868760109, -0.007711907383054495], [0.08372876793146133, 0.11910179257392883, 0.14154914021492004]]
+  warnings.warn(
+Entering create dataloader on rank 0
+Inside EEGDataset_v4 with args.data_dir='/tmp/leak/zuna/gpu1/in'
+In EEGDataset_v4.__init__, 15 file(s) matched glob_filter=['**/*.fif'] under /tmp/leak/zuna/gpu1/in
+Rank 0/1: Using DistributedSampler.
+Finishing create dataloader on rank 0
+[v4 recon] enabled -> /tmp/leak/zuna/gpu1/out (full_reconstruction/ + hybrid/)
+Entering create batch iterator on rank 0
+Creating batch iterator of dataloader with length 10000000000 and dataset of length 10000000000
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r0_noise_raw.fif: 1047.9 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r0_x10_raw.fif: 37.7 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r1_true_raw.fif: 36.5 ms
+Clipping input at +/-1.0
+Processing step 0 of 1
+batch['seq_lens']=tensor([2560, 2560, 2560, 2560, 2560], device='cuda:0')
+batch['seq_lens'].sum().item()=12800
+batch['t_coarse'].shape=torch.Size([12800, 1])
+model_input.shape=torch.Size([12800, 32])
+model_output.shape=torch.Size([1, 12800, 32])
+latent_recon.shape=torch.Size([1, 12800, 32])
+latent_data.shape=torch.Size([1, 12800, 32])
+Sample 0 has seqlen 2560 and 64 chans
+0 : 2560
+Sample 1 has seqlen 2560 and 64 chans
+2560 : 5120
+Sample 2 has seqlen 2560 and 64 chans
+5120 : 7680
+Sample 3 has seqlen 2560 and 64 chans
+7680 : 10240
+Sample 4 has seqlen 2560 and 64 chans
+10240 : 12800
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r1_x01_raw.fif: 31.7 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r1_zeros_raw.fif: 35.4 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r2_noise_raw.fif: 28.0 ms
+Clipping input at +/-1.0
+Processing step 0 of 1
+batch['seq_lens']=tensor([2560, 2560, 2560, 2560, 2560], device='cuda:0')
+batch['seq_lens'].sum().item()=12800
+batch['t_coarse'].shape=torch.Size([12800, 1])
+model_input.shape=torch.Size([12800, 32])
+model_output.shape=torch.Size([1, 12800, 32])
+latent_recon.shape=torch.Size([1, 12800, 32])
+latent_data.shape=torch.Size([1, 12800, 32])
+Sample 0 has seqlen 2560 and 64 chans
+0 : 2560
+Sample 1 has seqlen 2560 and 64 chans
+2560 : 5120
+Sample 2 has seqlen 2560 and 64 chans
+5120 : 7680
+Sample 3 has seqlen 2560 and 64 chans
+7680 : 10240
+Sample 4 has seqlen 2560 and 64 chans
+10240 : 12800
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r2_x10_raw.fif: 36.3 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r3_true_raw.fif: 35.8 ms
+Clipping input at +/-1.0
+Processing step 0 of 1
+batch['seq_lens']=tensor([2560, 2560, 2560, 2560, 2560], device='cuda:0')
+batch['seq_lens'].sum().item()=12800
+batch['t_coarse'].shape=torch.Size([12800, 1])
+model_input.shape=torch.Size([12800, 32])
+model_output.shape=torch.Size([1, 12800, 32])
+latent_recon.shape=torch.Size([1, 12800, 32])
+latent_data.shape=torch.Size([1, 12800, 32])
+Sample 0 has seqlen 2560 and 64 chans
+0 : 2560
+Sample 1 has seqlen 2560 and 64 chans
+2560 : 5120
+Sample 2 has seqlen 2560 and 64 chans
+5120 : 7680
+Sample 3 has seqlen 2560 and 64 chans
+7680 : 10240
+Sample 4 has seqlen 2560 and 64 chans
+10240 : 12800
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r3_x01_raw.fif: 33.3 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r3_zeros_raw.fif: 37.1 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r4_noise_raw.fif: 38.1 ms
+Clipping input at +/-1.0
+Processing step 0 of 1
+batch['seq_lens']=tensor([2560, 2560, 2560, 2560, 2560], device='cuda:0')
+batch['seq_lens'].sum().item()=12800
+batch['t_coarse'].shape=torch.Size([12800, 1])
+model_input.shape=torch.Size([12800, 32])
+model_output.shape=torch.Size([1, 12800, 32])
+latent_recon.shape=torch.Size([1, 12800, 32])
+latent_data.shape=torch.Size([1, 12800, 32])
+Sample 0 has seqlen 2560 and 64 chans
+0 : 2560
+Sample 1 has seqlen 2560 and 64 chans
+2560 : 5120
+Sample 2 has seqlen 2560 and 64 chans
+5120 : 7680
+Sample 3 has seqlen 2560 and 64 chans
+7680 : 10240
+Sample 4 has seqlen 2560 and 64 chans
+10240 : 12800
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r4_x10_raw.fif: 36.1 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r5_true_raw.fif: 31.6 ms
+Clipping input at +/-1.0
+Processing step 0 of 1
+batch['seq_lens']=tensor([2560, 2560, 2560, 2560, 2560], device='cuda:0')
+batch['seq_lens'].sum().item()=12800
+batch['t_coarse'].shape=torch.Size([12800, 1])
+model_input.shape=torch.Size([12800, 32])
+model_output.shape=torch.Size([1, 12800, 32])
+latent_recon.shape=torch.Size([1, 12800, 32])
+latent_data.shape=torch.Size([1, 12800, 32])
+Sample 0 has seqlen 2560 and 64 chans
+0 : 2560
+Sample 1 has seqlen 2560 and 64 chans
+2560 : 5120
+Sample 2 has seqlen 2560 and 64 chans
+5120 : 7680
+Sample 3 has seqlen 2560 and 64 chans
+7680 : 10240
+Sample 4 has seqlen 2560 and 64 chans
+10240 : 12800
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r5_x01_raw.fif: 32.9 ms
+  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'
+[v4 timing] _prepare_raw r5_zeros_raw.fif: 35.4 ms
+Clipping input at +/-1.0
+Processing step 0 of 1
+batch['seq_lens']=tensor([2560, 2560, 2560, 2560, 2560], device='cuda:0')
+batch['seq_lens'].sum().item()=12800
+batch['t_coarse'].shape=torch.Size([12800, 1])
+model_input.shape=torch.Size([12800, 32])
+model_output.shape=torch.Size([1, 12800, 32])
+latent_recon.shape=torch.Size([1, 12800, 32])
+latent_data.shape=torch.Size([1, 12800, 32])
+Sample 0 has seqlen 2560 and 64 chans
+0 : 2560
+Sample 1 has seqlen 2560 and 64 chans
+2560 : 5120
+Sample 2 has seqlen 2560 and 64 chans
+5120 : 7680
+Sample 3 has seqlen 2560 and 64 chans
+7680 : 10240
+Sample 4 has seqlen 2560 and 64 chans
+10240 : 12800
+Finished epoch 1
+[v4] one full pass through all .fif files complete — stopping iterator
+[v4] batch iterator exhausted after 6 batches
+[v4 recon] wrote r0_noise_raw.fif, r0_noise_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r0_x10_raw.fif, r0_x10_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r1_true_raw.fif, r1_true_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r1_x01_raw.fif, r1_x01_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r1_zeros_raw.fif, r1_zeros_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r2_noise_raw.fif, r2_noise_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r2_x10_raw.fif, r2_x10_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r3_true_raw.fif, r3_true_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r3_x01_raw.fif, r3_x01_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r3_zeros_raw.fif, r3_zeros_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r4_noise_raw.fif, r4_noise_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r4_x10_raw.fif, r4_x10_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r5_true_raw.fif, r5_true_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r5_x01_raw.fif, r5_x01_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[v4 recon] wrote r5_zeros_raw.fif, r5_zeros_raw.fif  (64 ch, 2560 samples, 20480 dropped cells)
+[rank0]:[W1017 03:14:29.190897392 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+a8a7e18e7095:43:438 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so

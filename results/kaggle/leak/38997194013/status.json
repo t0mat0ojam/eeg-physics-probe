@@ -1,0 +1,10 @@
+{
+ "job": "leak",
+ "kernel": "tomandcat25/eegpp-leak",
+ "accelerator": "NvidiaTeslaT4",
+ "started": 1792206116.7237394,
+ "quota": "{\"quotaRefreshTime\": \"2026-10-24T00:00:00.000Z\", \"gpuQuota\": {\"timeUsed\": \"2771.768.0s\", \"timeReserved\": \"0s\", \"totalTimeAllowed\": \"21600s\", \"minimumTimeAllowed\": \"21600s\", \"isPayToScaleEnabled\": false, \"hasEverRun\": true}, \"tpuQuota\": {\"timeUsed\": \"0s\", \"timeReserved\": \"0s\", \"totalTimeAllowed\": \"72000s\", \"minimumTimeAllowed\": \"72000s\", \"isPayToScaleEnabled\": false, \"hasEverRun\": false}}",
+ "state": "complete",
+ "finished": 1792206930.5461588,
+ "minutes": 13.563706994056702
+}
