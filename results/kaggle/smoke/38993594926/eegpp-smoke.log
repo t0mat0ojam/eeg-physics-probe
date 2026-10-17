@@ -1,0 +1,134 @@
+[{"stream_name":"stdout","time":27.04822218,"data":"[v4] direct-.fif reconstruction: /tmp/smoke/zuna/input -\u003e /tmp/smoke/zuna/fif\n"}
+,{"stream_name":"stderr","time":38.953417659,"data":"Signal handler installed.\n"}
+,{"stream_name":"stderr","time":38.953607355,"data":"WARNING: Setting MKL_SERVICE_FORCE_INTEL to GNU\n"}
+,{"stream_name":"stderr","time":38.953614754,"data":"WARNING: Setting OMP_NUM_THREADS to 1\n"}
+,{"stream_name":"stderr","time":38.953694685,"data":"WARNING: Setting MKL_NUM_THREADS to 1\n"}
+,{"stream_name":"stderr","time":38.95373102,"data":"WARNING: Setting ENABLE_INTRA_NODE_COMM to 1\n"}
+,{"stream_name":"stderr","time":38.953836222,"data":"WARNING: Setting TORCH_NCCL_AVOID_RECORD_STREAMS to 1\n"}
+,{"stream_name":"stderr","time":38.953858139,"data":"WARNING: Setting NCCL_IB_TIMEOUT to 22\n"}
+,{"stream_name":"stderr","time":38.953939299,"data":"WARNING: Setting NCCL_DEBUG to INFO\n"}
+,{"stream_name":"stderr","time":38.953992395,"data":"WARNING: Setting TORCH_NCCL_ASYNC_ERROR_HANDLING to 1\n"}
+,{"stream_name":"stderr","time":38.954040318,"data":"WARNING: Setting TRITON_CACHE_DIR to /tmp/tmpdjgzpmdv\n"}
+,{"stream_name":"stderr","time":39.024231794,"data":"[W1017 02:07:09.817269146 ProcessGroupNCCL.cpp:932] Warning: TORCH_NCCL_AVOID_RECORD_STREAMS is the default now, this environment variable is thus deprecated. (function operator())\n"}
+,{"stream_name":"stderr","time":39.060656719,"data":"/usr/local/lib/python3.13/dist-packages/torch/distributed/device_mesh.py:302: UserWarning: It seems like you did not set/select the default device for the current process before the DeviceMesh initialization or use a launcher (i.e. torchrun) which populates `LOCAL_RANK` environment variable. It is recommended to set the current device for the process BEFORE the DeviceMesh initialization so that the underlying communicator (i.e. NCCL) can be initialized properly. Given that the current process has no default device selected, DeviceMesh will use a heuristic to set the device_id via `global_rank % num_devices_per_host`, assuming homogeneous hardware cluster. \n"}
+,{"stream_name":"stderr","time":39.060693925,"data":"  self._setup_world_group_and_device()\n"}
+,{"stream_name":"stderr","time":39.878444253,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":39.878476618,"data":"WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":54.306505429,"data":"WARNING:root:[warmup] pad_packed_seqlen=False: real seqlens vary, so this single-length warm-up will NOT prevent recompiles at serve time.\n"}
+,{"stream_name":"stderr","time":54.30655764,"data":"WARNING:root:[warmup] skipped due to error: NameError: name 'timer' is not defined\n"}
+,{"stream_name":"stderr","time":55.430293535,"data":"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_data.py:416: UserWarning: Channel positions out of bounds detected!\n"}
+,{"stream_name":"stderr","time":55.430327169,"data":"  Positions below min: 0 elements\n"}
+,{"stream_name":"stderr","time":55.430330773,"data":"  Positions above max: 9 elements\n"}
+,{"stream_name":"stderr","time":55.430333289000004,"data":"  xyz_min: [-0.11999999731779099, -0.11999999731779099, -0.11999999731779099]\n"}
+,{"stream_name":"stderr","time":55.430335787,"data":"  xyz_max: [0.11999999731779099, 0.11999999731779099, 0.11999999731779099]\n"}
+,{"stream_name":"stderr","time":55.430338237,"data":"  chan_pos range: [[-0.08772225677967072, -0.0885864868760109, -0.007711907383054495], [0.08372876793146133, 0.11910179257392883, 0.14154914021492004]]\n"}
+,{"stream_name":"stderr","time":55.430348751,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":104.26901391,"data":"[rank0]:W1017 02:08:14.739000 55 torch/_inductor/utils.py:1731] [12/0] Not enough SMs to use max_autotune_gemm mode\n"}
+,{"stream_name":"stderr","time":255.588640132,"data":"/usr/local/lib/python3.13/dist-packages/zuna/inference/AY2l/lingua/apps/AY2latent_bci/eeg_data.py:416: UserWarning: Channel positions out of bounds detected!\n"}
+,{"stream_name":"stderr","time":255.588673626,"data":"  Positions below min: 0 elements\n"}
+,{"stream_name":"stderr","time":255.588678147,"data":"  Positions above max: 9 elements\n"}
+,{"stream_name":"stderr","time":255.588681968,"data":"  xyz_min: [-0.11999999731779099, -0.11999999731779099, -0.11999999731779099]\n"}
+,{"stream_name":"stderr","time":255.588685897,"data":"  xyz_max: [0.11999999731779099, 0.11999999731779099, 0.11999999731779099]\n"}
+,{"stream_name":"stderr","time":255.588689905,"data":"  chan_pos range: [[-0.08772225677967072, -0.0885864868760109, -0.007711907383054495], [0.08372876793146133, 0.11910179257392883, 0.14154914021492004]]\n"}
+,{"stream_name":"stderr","time":255.588694054,"data":"  warnings.warn(\n"}
+,{"stream_name":"stdout","time":492.187137449,"data":"Single GPU job\n"}
+,{"stream_name":"stdout","time":492.187185494,"data":"Entering create dataloader on rank 0\n"}
+,{"stream_name":"stdout","time":492.187191966,"data":"Inside EEGDataset_v4 with args.data_dir='/tmp/smoke/zuna/input'\n"}
+,{"stream_name":"stdout","time":492.187197178,"data":"In EEGDataset_v4.__init__, 4 file(s) matched glob_filter=['**/*.fif'] under /tmp/smoke/zuna/input\n"}
+,{"stream_name":"stdout","time":492.187202534,"data":"Rank 0/1: Using DistributedSampler.\n"}
+,{"stream_name":"stdout","time":492.187207384,"data":"Finishing create dataloader on rank 0\n"}
+,{"stream_name":"stdout","time":492.187212473,"data":"[v4 recon] enabled -\u003e /tmp/smoke/zuna/fif (full_reconstruction/ + hybrid/)\n"}
+,{"stream_name":"stdout","time":492.187217614,"data":"Entering create batch iterator on rank 0\n"}
+,{"stream_name":"stdout","time":492.18722256,"data":"Creating batch iterator of dataloader with length 10000000000 and dataset of length 10000000000\n"}
+,{"stream_name":"stdout","time":492.18722796,"data":"  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'\n"}
+,{"stream_name":"stdout","time":492.187233102,"data":"  [v4] repairing user-requested channels (mask-\u003einterpolate): ['C3', 'Cz', 'Pz', 'F4', 'O1', 'T8']\n"}
+,{"stream_name":"stdout","time":492.187238205,"data":"[v4 timing] _prepare_raw sim0_raw.fif: 1079.1 ms\n"}
+,{"stream_name":"stdout","time":492.187243192,"data":"  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'\n"}
+,{"stream_name":"stdout","time":492.18724809,"data":"  [v4] repairing user-requested channels (mask-\u003einterpolate): ['C3', 'Cz', 'Pz', 'F4', 'O1', 'T8']\n"}
+,{"stream_name":"stdout","time":492.187253362,"data":"[v4 timing] _prepare_raw sim1_raw.fif: 31.1 ms\n"}
+,{"stream_name":"stdout","time":492.18725832,"data":"  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'\n"}
+,{"stream_name":"stdout","time":492.187262818,"data":"  [v4] repairing user-requested channels (mask-\u003einterpolate): ['C3', 'Cz', 'Pz', 'F4', 'O1', 'T8']\n"}
+,{"stream_name":"stdout","time":492.187267405,"data":"[v4 timing] _prepare_raw sim2_raw.fif: 31.2 ms\n"}
+,{"stream_name":"stdout","time":492.187271826,"data":"Clipping input at +/-1.0\n"}
+,{"stream_name":"stdout","time":492.187276079,"data":"Processing step 0 of 1\n"}
+,{"stream_name":"stdout","time":492.187280536,"data":"batch['seq_lens']=tensor([2560, 2560, 2560, 2560, 2560], device='cuda:0')\n"}
+,{"stream_name":"stdout","time":492.187298278,"data":"batch['seq_lens'].sum().item()=12800\n"}
+,{"stream_name":"stdout","time":492.187301177,"data":"batch['t_coarse'].shape=torch.Size([12800, 1])\n"}
+,{"stream_name":"stdout","time":492.187303458,"data":"model_input.shape=torch.Size([12800, 32])\n"}
+,{"stream_name":"stdout","time":492.187305745,"data":"model_output.shape=torch.Size([1, 12800, 32])\n"}
+,{"stream_name":"stdout","time":492.187308182,"data":"latent_recon.shape=torch.Size([1, 12800, 32])\n"}
+,{"stream_name":"stdout","time":492.187310422,"data":"latent_data.shape=torch.Size([1, 12800, 32])\n"}
+,{"stream_name":"stdout","time":492.187312956,"data":"Sample 0 has seqlen 2560 and 64 chans\n"}
+,{"stream_name":"stdout","time":492.187315234,"data":"0 : 2560\n"}
+,{"stream_name":"stdout","time":492.187317444,"data":"Sample 1 has seqlen 2560 and 64 chans\n"}
+,{"stream_name":"stdout","time":492.187319759,"data":"2560 : 5120\n"}
+,{"stream_name":"stdout","time":492.187322035,"data":"Sample 2 has seqlen 2560 and 64 chans\n"}
+,{"stream_name":"stdout","time":492.187324367,"data":"5120 : 7680\n"}
+,{"stream_name":"stdout","time":492.187326557,"data":"Sample 3 has seqlen 2560 and 64 chans\n"}
+,{"stream_name":"stdout","time":492.187328801,"data":"7680 : 10240\n"}
+,{"stream_name":"stdout","time":492.187331116,"data":"Sample 4 has seqlen 2560 and 64 chans\n"}
+,{"stream_name":"stdout","time":492.18733336,"data":"10240 : 12800\n"}
+,{"stream_name":"stdout","time":492.187335582,"data":"  [v4] all 64 ch have file-provided positions; skipping montage 'standard_1005'\n"}
+,{"stream_name":"stdout","time":492.187338034,"data":"  [v4] repairing user-requested channels (mask-\u003einterpolate): ['C3', 'Cz', 'Pz', 'F4', 'O1', 'T8']\n"}
+,{"stream_name":"stdout","time":492.187340519,"data":"[v4 timing] _prepare_raw sim3_raw.fif: 31.8 ms\n"}
+,{"stream_name":"stdout","time":492.187347635,"data":"Clipping input at +/-1.0\n"}
+,{"stream_name":"stdout","time":492.187350203,"data":"Processing step 0 of 1\n"}
+,{"stream_name":"stdout","time":492.187352562,"data":"batch['seq_lens']=tensor([2560, 2560, 2560], device='cuda:0')\n"}
+,{"stream_name":"stdout","time":492.18735486,"data":"batch['seq_lens'].sum().item()=7680\n"}
+,{"stream_name":"stdout","time":492.187357093,"data":"batch['t_coarse'].shape=torch.Size([7680, 1])\n"}
+,{"stream_name":"stdout","time":492.187359392,"data":"model_input.shape=torch.Size([7680, 32])\n"}
+,{"stream_name":"stdout","time":492.187361645,"data":"model_output.shape=torch.Size([1, 7680, 32])\n"}
+,{"stream_name":"stdout","time":492.187363974,"data":"latent_recon.shape=torch.Size([1, 7680, 32])\n"}
+,{"stream_name":"stdout","time":492.18736622,"data":"latent_data.shape=torch.Size([1, 7680, 32])\n"}
+,{"stream_name":"stdout","time":492.187380704,"data":"Sample 0 has seqlen 2560 and 64 chans\n"}
+,{"stream_name":"stdout","time":492.187383846,"data":"0 : 2560\n"}
+,{"stream_name":"stdout","time":492.187387504,"data":"Sample 1 has seqlen 2560 and 64 chans\n"}
+,{"stream_name":"stdout","time":492.187389646,"data":"2560 : 5120\n"}
+,{"stream_name":"stdout","time":492.187391784,"data":"Sample 2 has seqlen 2560 and 64 chans\n"}
+,{"stream_name":"stdout","time":492.187393899,"data":"5120 : 7680\n"}
+,{"stream_name":"stdout","time":492.187395955,"data":"Finished epoch 1\n"}
+,{"stream_name":"stdout","time":492.187398024,"data":"[v4] one full pass through all .fif files complete — stopping iterator\n"}
+,{"stream_name":"stdout","time":492.187401144,"data":"[v4] batch iterator exhausted after 2 batches\n"}
+,{"stream_name":"stdout","time":492.187403295,"data":"[v4 recon] wrote sim0_raw.fif, sim0_raw.fif  (64 ch, 2560 samples, 15360 dropped cells)\n"}
+,{"stream_name":"stdout","time":492.187408055,"data":"[v4 recon] wrote sim1_raw.fif, sim1_raw.fif  (64 ch, 2560 samples, 15360 dropped cells)\n"}
+,{"stream_name":"stdout","time":492.187410339,"data":"[v4 recon] wrote sim2_raw.fif, sim2_raw.fif  (64 ch, 2560 samples, 15360 dropped cells)\n"}
+,{"stream_name":"stdout","time":492.187412632,"data":"[v4 recon] wrote sim3_raw.fif, sim3_raw.fif  (64 ch, 2560 samples, 15360 dropped cells)\n"}
+,{"stream_name":"stderr","time":496.015248318,"data":"[rank0]:[W1017 02:14:46.808153019 ProcessGroupNCCL.cpp:1575] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())\n"}
+,{"stream_name":"stdout","time":497.925168749,"data":"433a2df4870f:55:360 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so\n"}
+,{"stream_name":"stdout","time":550.179834979,"data":"✓ reconstruction complete: /tmp/smoke/zuna/fif ; figures: /tmp/smoke/zuna/fig\n"}
+,{"stream_name":"stdout","time":550.622092942,"data":"{\n"}
+,{"stream_name":"stdout","time":550.622117253,"data":" \"python\": \"3.13.15\",\n"}
+,{"stream_name":"stdout","time":550.622122919,"data":" \"mock\": false,\n"}
+,{"stream_name":"stdout","time":550.622127751,"data":" \"steps\": {\n"}
+,{"stream_name":"stdout","time":550.622132456,"data":"  \"setup_min\": 0.3007779041926066,\n"}
+,{"stream_name":"stdout","time":550.622137282,"data":"  \"zuna_call_min\": 8.731437341372173,\n"}
+,{"stream_name":"stdout","time":550.622142208,"data":"  \"total_min\": 9.166819719473521\n"}
+,{"stream_name":"stdout","time":550.622146827,"data":" },\n"}
+,{"stream_name":"stdout","time":550.622151571,"data":" \"nvidia_smi\": \"Tesla T4, 15360 MiB, 580.178.04\\nTesla T4, 15360 MiB, 580.178.04\",\n"}
+,{"stream_name":"stdout","time":550.622157754,"data":" \"pip_install\": \"\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501\\u2501 401.0/401.0 kB 11.4 MB/s eta 0:00:00\",\n"}
+,{"stream_name":"stdout","time":550.622165731,"data":" \"zuna_version\": \"1.1.6\",\n"}
+,{"stream_name":"stdout","time":550.622170772,"data":" \"torch\": \"2.11.0+cu128\",\n"}
+,{"stream_name":"stdout","time":550.622176149,"data":" \"cuda\": true,\n"}
+,{"stream_name":"stdout","time":550.622181696,"data":" \"gpu\": \"Tesla T4\",\n"}
+,{"stream_name":"stdout","time":550.622186758,"data":" \"capability\": \"7.5\",\n"}
+,{"stream_name":"stdout","time":550.622191834,"data":" \"nmse_zuna\": [\n"}
+,{"stream_name":"stdout","time":550.622196907,"data":"  0.03198394385284882,\n"}
+,{"stream_name":"stdout","time":550.622201459,"data":"  1.0158696782445518,\n"}
+,{"stream_name":"stdout","time":550.622205793,"data":"  0.02848692955492586,\n"}
+,{"stream_name":"stdout","time":550.622210659,"data":"  0.09296593369439986\n"}
+,{"stream_name":"stdout","time":550.622215625,"data":" ],\n"}
+,{"stream_name":"stdout","time":550.622220393,"data":" \"nmse_spline\": [\n"}
+,{"stream_name":"stdout","time":550.62222531,"data":"  0.014519486313803233,\n"}
+,{"stream_name":"stdout","time":550.622230566,"data":"  0.05151871268445899,\n"}
+,{"stream_name":"stdout","time":550.622235788,"data":"  0.023413651369423864,\n"}
+,{"stream_name":"stdout","time":550.622240781,"data":"  0.0886218267599685\n"}
+,{"stream_name":"stdout","time":550.622246042,"data":" ],\n"}
+,{"stream_name":"stdout","time":550.622250843,"data":" \"ok\": true\n"}
+,{"stream_name":"stdout","time":550.623912005,"data":"}\n"}
+,{"stream_name":"stderr","time":553.769197718,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":553.769229609,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":553.987348479,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":553.987396723,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":554.705057952,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":555.60185186,"data":"[NbConvertApp] Writing 285864 bytes to __results__.html\n"}
+]

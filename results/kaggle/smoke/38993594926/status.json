@@ -1,0 +1,10 @@
+{
+ "job": "smoke",
+ "kernel": "tomandcat25/eegpp-smoke",
+ "accelerator": "NvidiaTeslaT4",
+ "started": 1792202785.8395083,
+ "quota": "{\"quotaRefreshTime\": \"2026-10-24T00:00:00.000Z\", \"gpuQuota\": {\"timeUsed\": \"0s\", \"timeReserved\": \"0s\", \"totalTimeAllowed\": \"21600s\", \"minimumTimeAllowed\": \"21600s\", \"isPayToScaleEnabled\": false, \"hasEverRun\": false}, \"tpuQuota\": {\"timeUsed\": \"0s\", \"timeReserved\": \"0s\", \"totalTimeAllowed\": \"72000s\", \"minimumTimeAllowed\": \"72000s\", \"isPayToScaleEnabled\": false, \"hasEverRun\": false}}",
+ "state": "complete",
+ "finished": 1792203359.441639,
+ "minutes": 9.560035514831544
+}
