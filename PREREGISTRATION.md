@@ -100,3 +100,25 @@ IDW (offline: 0.222), the leak-proof input is judged to have broken ZUNA and the
 
 **Secondary.** Scores per mask type (scattered / patch) and for k = 2; dose–response across k = 1, 2, 4;
 ZUNA vs splines and vs best linear on real recordings.
+
+### Probe 1 — OUTCOME (recorded 17 Oct 2026, 16:40 JST)
+
+Run: Kaggle 2 × T4, 800 recordings, 258 min, all completed (`results/kaggle/probe1/38998916959`).
+
+**Primary score (k = 1, all masks):** ZUNA +0.138 [+0.097, +0.178]. Lower bound > +0.027 (top of the H1
+band) and score(k = 1) +0.138 > score(k = 4) +0.104 — the H2 criterion is met **by the letter**.
+
+**Validity check: FAILED.** ZUNA's mean shape error on real k = 1 recordings is 0.234, above IDW's
+0.222 (offline; 0.202 in this run). By the rule fixed in advance, the run is **not interpreted as
+evidence for H2**.
+
+**What the numbers show (descriptive, not a confirmatory claim):** ZUNA's positive score comes from
+breaking down on impossible patterns (error 0.444 vs splines 0.224), not from beating smoothers on
+possible ones (0.234 vs splines 0.152; ZUNA better than splines on only 27% of real k = 1 recordings).
+The physics oracle shows the opposite profile (0.085 on possible patterns). ZUNA's score also barely
+fades with k (0.138 → 0.133 → 0.104) while the oracle's does (0.265 → 0.151 → 0.091).
+Exploratory reading: ZUNA's errors are strongly sensitive to physical realism (a violation-of-
+expectation signature), but on these synthetic recordings it does not use that knowledge to fill in
+electrodes better than splines. Candidate explanations to test next, each pre-registered separately:
+(a) one diffusion sample instead of a posterior mean; (b) synthetic recordings too clean / unlike
+training data; (c) the leak-proof input itself.
