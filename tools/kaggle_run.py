@@ -116,4 +116,19 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception:  # record early failures (auth, push) so they reach the results commit
+        import traceback
+        args = sys.argv
+        out = Path(args[args.index("--out") + 1]) if "--out" in args else ROOT / "results" / "kaggle" / "error"
+        out.mkdir(parents=True, exist_ok=True)
+        tb = traceback.format_exc()
+        for secret in (os.environ.get("KAGGLE_KEY"), os.environ.get("KAGGLE_API_TOKEN")):
+            if secret:
+                tb = tb.replace(secret, "***")
+        (out / "status.json").write_text(json.dumps(dict(state="runner_error", error=tb), indent=1))
+        print(tb, flush=True)
+        sys.exit(1)
