@@ -1,0 +1,61 @@
+name: run-job
+# Runs jobs/<name>/main.py on a Kaggle GPU when a commit message on main contains [run:<name>],
+# or manually from the Actions tab. Results are committed back to results/kaggle/<name>/<run id>/.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "job folder name under jobs/"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: run-job-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[run:')
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Which job
+        id: job
+        env:
+          MSG: ${{ github.event.head_commit.message }}
+          INPUT_JOB: ${{ github.event.inputs.job }}
+        run: |
+          JOB=$(python - <<'EOF'
+          import os, re
+          j = os.environ.get("INPUT_JOB") or ""
+          if not j:
+              m = re.search(r"\[run:([A-Za-z0-9_\-]+)\]", os.environ.get("MSG", ""))
+              j = m.group(1) if m else ""
+          print(j)
+          EOF
+          )
+          if [ -z "$JOB" ] || [ ! -f "jobs/$JOB/main.py" ]; then echo "No job '$JOB'"; exit 1; fi
+          echo "name=$JOB" >> "$GITHUB_OUTPUT"
+      - name: Install Kaggle client
+        run: pip install -q "kaggle>=1.7"
+      - name: Run on Kaggle GPU
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: python tools/kaggle_run.py --job "${{ steps.job.outputs.name }}" --out "results/kaggle/${{ steps.job.outputs.name }}/${{ github.run_id }}"
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/kaggle || true
+          git commit -q -m "results: ${{ steps.job.outputs.name }} (run ${{ github.run_id }})" || exit 0
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
