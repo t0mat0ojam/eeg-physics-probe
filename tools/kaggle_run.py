@@ -64,6 +64,12 @@ def main():
     if not user:
         raise SystemExit("Could not determine the Kaggle username; set the KAGGLE_USERNAME secret.")
 
+    try:  # weekly GPU quota; 0 or an error usually means the Kaggle account is not phone-verified
+        q = api.get_accelerator_quota_statistics() if hasattr(api, "get_accelerator_quota_statistics") else None
+        print("accelerator quota:", q, flush=True)
+    except Exception as e:
+        q = f"unavailable: {e}"
+        print("accelerator quota", q, flush=True)
     slug = f"eegpp-{a.job}".lower().replace("_", "-")
     kdir = ROOT / "build" / "kernel" / a.job
     kdir.mkdir(parents=True, exist_ok=True)
@@ -75,7 +81,7 @@ def main():
     (kdir / "kernel-metadata.json").write_text(json.dumps(meta, indent=1))
 
     a.out.mkdir(parents=True, exist_ok=True)
-    status = dict(job=a.job, kernel=meta["id"], accelerator=a.accelerator, started=time.time())
+    status = dict(job=a.job, kernel=meta["id"], accelerator=a.accelerator, started=time.time(), quota=str(q))
     try:
         resp = api.kernels_push(str(kdir), timeout=str(int(a.max_hours * 3600)), acc=a.accelerator)
     except Exception as e:   # unknown accelerator name etc. -> retry with the default GPU
