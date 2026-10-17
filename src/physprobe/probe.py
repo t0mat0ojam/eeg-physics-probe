@@ -30,7 +30,7 @@ def time_courses(k, T, rng):
     return tc / tc.std(1, keepdims=True)
 
 
-def make_trial(lf, k, kind, seconds, rng, S1, rms_uv=20.0, snr_db=20.0):
+def make_trial(lf, k, kind, seconds, rng, S1, rms_uv=20.0, snr_db=20.0, locs=None):
     """One recording. All trials of a given k share ONE global gain (no per-trial rescaling),
     so the three kinds have the same ensemble covariance k*E[a^2]*S1 by construction."""
     L = lf["L"]
@@ -42,7 +42,7 @@ def make_trial(lf, k, kind, seconds, rng, S1, rms_uv=20.0, snr_db=20.0):
         X = np.sqrt(k * EA2) * A1 @ time_courses(C, T, rng)
     else:
         if kind == "real":
-            locs = rng.integers(0, M, k)
+            locs = rng.integers(0, M, k) if locs is None else np.asarray(locs)
             o = rng.normal(size=(k, 3))
             o /= np.linalg.norm(o, axis=1, keepdims=True)
             G = np.einsum("cki,ki->ck", L[:, locs], o)

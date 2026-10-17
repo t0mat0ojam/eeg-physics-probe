@@ -48,12 +48,17 @@ def run(cfg: dict, out: Path, mock: bool = False):
             W.append(dict(V=V, spline=probe.spline_W(pos, V, H), **{"min-norm": probe.linear_W(mn_cov, V, H),
                                                                      "best-linear": probe.linear_W(tot, V, H)}))
         trials = []
+        M = L.shape[1]
         for k in cfg["ks"]:
+            # stratified source locations: walk through shuffled copies of the whole grid
+            loc_stream = np.concatenate([rng.permutation(M) for _ in range(k * cfg["n_trials"] // M + 1)])
             for kind in cfg["kinds"]:
                 for i in range(cfg["n_trials"]):
-                    X = probe.make_trial(lf, k, kind, cfg["seconds"], rng, S1).astype(np.float32)
-                    trials.append(dict(name=f"k{k}_{kind}_{i:03d}", k=k, kind=kind, X=X, hp=probe.highpass(X.astype(float))))
-        units = [(t, mi) for t in range(len(trials)) for mi in range(len(masks))]   # one row each
+                    locs = loc_stream[i * k:(i + 1) * k] if kind == "real" else None
+                    X = probe.make_trial(lf, k, kind, cfg["seconds"], rng, S1, locs=locs).astype(np.float32)
+                    trials.append(dict(name=f"k{k}_{kind}_{i:03d}", i=i, k=k, kind=kind, X=X, hp=probe.highpass(X.astype(float))))
+        mpt = cfg.get("masks_per_trial", len(masks))       # each trial gets mpt masks, cycled
+        units = [(t, (trials[t]["i"] * mpt + j) % len(masks)) for t in range(len(trials)) for j in range(mpt)]   # same masks for every kind
         rng.shuffle(units)                                     # mix conditions within every chunk
         work = Path(os.environ.get("PROBE_WORK", "/tmp/probe_work" if not mock else str(out / "work")))
         n_gpus = cfg.get("n_gpus", 1)
