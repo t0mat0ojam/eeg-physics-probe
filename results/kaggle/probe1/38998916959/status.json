@@ -1,0 +1,10 @@
+{
+ "job": "probe1",
+ "kernel": "tomandcat25/eegpp-probe1",
+ "accelerator": "NvidiaTeslaT4",
+ "started": 1792207729.0972426,
+ "quota": "{\"quotaRefreshTime\": \"2026-10-24T00:00:00.000Z\", \"gpuQuota\": {\"timeUsed\": \"3529.707.0s\", \"timeReserved\": \"0s\", \"totalTimeAllowed\": \"21600s\", \"minimumTimeAllowed\": \"21600s\", \"isPayToScaleEnabled\": false, \"hasEverRun\": true}, \"tpuQuota\": {\"timeUsed\": \"0s\", \"timeReserved\": \"0s\", \"totalTimeAllowed\": \"72000s\", \"minimumTimeAllowed\": \"72000s\", \"isPayToScaleEnabled\": false, \"hasEverRun\": false}}",
+ "state": "complete",
+ "finished": 1792223211.9001026,
+ "minutes": 258.0467143416405
+}
