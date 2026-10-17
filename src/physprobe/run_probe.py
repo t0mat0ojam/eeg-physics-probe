@@ -45,8 +45,7 @@ def run(cfg: dict, out: Path, mock: bool = False):
         W = []
         for _, H in masks:
             V = [c for c in range(C) if c not in H]
-            W.append(dict(V=V, spline=probe.spline_W(pos, V, H), **{"min-norm": probe.linear_W(mn_cov, V, H),
-                                                                     "best-linear": probe.linear_W(tot, V, H)}))
+            W.append(dict(V=V, **probe.linear_family(pos, S1, V, H)))
         trials = []
         M = L.shape[1]
         for k in cfg["ks"]:
@@ -76,10 +75,12 @@ def run(cfg: dict, out: Path, mock: bool = False):
             files = []
             for (t, mi) in chunk:
                 inf = info.copy()
-                inf["bads"] = [names[h] for h in masks[mi][1]]
+                H = masks[mi][1]
+                inf["bads"] = [names[h] for h in H]
+                Xin = probe.leakproof_input(trials[t]["X"].astype(float), H)
                 for c in range(cfg["copies"]):
                     f = fin / f"{trials[t]['name']}_m{mi}_c{c}_raw.fif"
-                    mne.io.RawArray(trials[t]["X"].astype(float), inf, verbose="ERROR").save(f, verbose="ERROR")
+                    mne.io.RawArray(Xin, inf, verbose="ERROR").save(f, verbose="ERROR")
                     files.append(f)
             if mock:
                 recs = {}
@@ -94,19 +95,18 @@ def run(cfg: dict, out: Path, mock: bool = False):
             for (t, mi) in chunk:
                 tr, (mkind, H), Wm = trials[t], masks[mi], W[mi]
                 hidden = [names[h] for h in H]
-                truth = tr["hp"]
+                truth = probe.highpass(probe.reref_visible(tr["X"].astype(float), Wm["V"]))   # visible-ref domain
                 preds = []
                 for c in range(cfg["copies"]):
                     data, ch = recs[f"{tr['name']}_m{mi}_c{c}_raw.fif"]
-                    preds.append(probe.highpass(data)[[ch.index(h) for h in hidden]])
+                    preds.append(data[[ch.index(h) for h in hidden]])     # ZUNA output, already high-passed
                 T = min([truth.shape[1]] + [p.shape[1] for p in preds])
                 tH = truth[H, :T]
-                zm = np.mean([p[:, :T] for p in preds], 0)
+                zm = np.mean([p[:, :T] / (p[:, :T].std() + 1e-30) for p in preds], 0)
                 row = dict(trial=tr["name"], k=tr["k"], kind=tr["kind"], mask=mi, mask_kind=mkind,
-                           power=float((tH ** 2).sum()), err_zuna=float(((tH - zm) ** 2).sum()),
-                           err_zuna_single=float(((tH - preds[0][:, :T]) ** 2).sum()))
-                for wn in ("spline", "min-norm", "best-linear"):
-                    row[f"err_{wn}"] = float(((tH - Wm[wn] @ truth[Wm["V"], :T]) ** 2).sum())
+                           shape_zuna=probe.shape_err(zm, tH), shape_zuna_single=probe.shape_err(preds[0][:, :T], tH))
+                for wn in ("spline", "idw", "best-linear", "linear-smooth"):
+                    row[f"shape_{wn}"] = probe.shape_err(Wm[wn] @ truth[Wm["V"], :T], tH)
                 rows.append(row)
             (out / "rows.json").write_text(json.dumps(rows))
             log["chunks"].append(dict(start=ci, units=len(chunk), files=len(files), minutes=(time.time() - t1) / 60))

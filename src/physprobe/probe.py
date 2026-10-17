@@ -87,3 +87,57 @@ def linear_W(cov, V, H, ridge=1e-6):
 def highpass(X, fc=0.5):
     import mne
     return mne.filter.filter_data(X, synth.FS, fc, None, verbose="ERROR")
+
+
+# ---------------- leak-proof protocol (see jobs/leak) ----------------
+SEG = 1280   # ZUNA's 5 s segment at 256 Hz
+
+
+def reref_matrix(C, V):
+    """Re-reference to the average of the visible electrodes V."""
+    m = np.zeros(C)
+    m[list(V)] = 1.0 / len(V)
+    return np.eye(C) - np.outer(np.ones(C), m)
+
+
+def reref_visible(X, V):
+    return X - X[list(V)].mean(0, keepdims=True)
+
+
+def leakproof_input(X, H):
+    """Visible-average reference, hidden rows zeroed: ZUNA's per-channel mean/std and its
+    average-reference offset then carry no information about the hidden electrodes."""
+    C = X.shape[0]
+    V = [c for c in range(C) if c not in set(H)]
+    Y = reref_visible(X, V)
+    Y[list(H)] = 0.0
+    return Y
+
+
+def shape_err(P, T):
+    """Mean over channels and 5 s segments of (1 - Pearson r). Amplitude-free."""
+    out = []
+    for s0 in range(0, T.shape[1] - SEG + 1, SEG):
+        p = P[:, s0:s0 + SEG] - P[:, s0:s0 + SEG].mean(1, keepdims=True)
+        t = T[:, s0:s0 + SEG] - T[:, s0:s0 + SEG].mean(1, keepdims=True)
+        r = (p * t).sum(1) / np.sqrt((p ** 2).sum(1) * (t ** 2).sum(1) + 1e-300)
+        out.append(1 - r)
+    return float(np.mean(out))
+
+
+def idw_W(pos, V, H, power=2.0):
+    """Inverse-distance-weighted average of visible electrodes (crude smoother)."""
+    d = np.linalg.norm(pos[list(H)][:, None] - pos[list(V)][None], axis=2)
+    w = 1.0 / np.maximum(d, 1e-6) ** power
+    return w / w.sum(1, keepdims=True)
+
+
+def linear_family(pos, S1, V, H):
+    """Linear smoothers spanning the H1 band, all in the visible-reference domain."""
+    C = len(S1)
+    R = reref_matrix(C, V)
+    W = {"spline": spline_W(pos, V, H), "idw": idw_W(pos, V, H)}
+    for name, nf in (("best-linear", 0.01), ("linear-smooth", 0.3)):
+        cov = S1 / np.trace(S1) + nf * np.eye(C) / C
+        W[name] = linear_W(R @ cov @ R.T, V, H)
+    return W

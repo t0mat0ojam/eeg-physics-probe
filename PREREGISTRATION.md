@@ -38,3 +38,31 @@ and vs splines on real recordings; single-sample vs 2-sample mean.
 **Known limitation stated in advance.** Synthetic recordings are cleaner than real EEG; a ZUNA that
 learned physics from real data could still be hurt by this shift. That affects all three kinds
 equally, which is why the primary readout is a difference between kinds.
+
+
+### Deviation 1 (17 Oct 2026, before any probe data): ZUNA leaks the hidden channels' own scale
+
+Reading ZUNA 1.1.6's code (`eeg_data.py`, v4 path) showed that each channel is z-scored per 5 s
+segment with **its own** mean/std — including channels marked bad — and the model output for masked
+cells is mapped back with those same statistics; the per-segment average reference also includes
+the masked channels. Confirmed empirically (`jobs/leak`, 6 recordings x 8 hidden channels, Kaggle T4):
+
+| hidden channels filled with | output std / true std | correlation | NMSE |
+|---|---|---|---|
+| true signal | 1.00 | 0.965 | 0.069 |
+| true x 10 | 9.39 | 0.921 | 73.2 |
+| true x 0.1 | 0.16 | 0.955 | 0.73 |
+| white noise (median visible std) | 0.88 | 0.953 | 0.27 |
+| zeros | 0.09 | 0.928 | 0.85 |
+
+So ZUNA predicts the normalised waveform *shape*; the amplitude comes from whatever the hidden
+channel contains. Consequences for this study (decided before any probe data):
+1. **Leak-proof input.** Each recording is re-referenced to the average of the visible electrodes and
+   hidden channels are zero-filled, so neither the per-channel statistics nor the average-reference
+   offset carry hidden information.
+2. **Shape score replaces NMSE.** E = mean over hidden channels and 5 s segments of (1 − Pearson r),
+   for every method alike (amplitude-free; ZUNA's native output).
+3. Under a nonlinear score, linear smoothers no longer tie exactly on real vs patterns recordings, so
+   the H1 band is the range of physics-use scores of a family of linear smoothers (splines, IDW,
+   best linear, smoothed linear), estimated offline with large n (`experiments/null_band.py`);
+   the H2 reference is an oracle RAP-MUSIC model with the true lead field.
