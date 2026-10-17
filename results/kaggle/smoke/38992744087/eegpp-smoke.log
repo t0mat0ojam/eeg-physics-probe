@@ -1,0 +1,22 @@
+[{"stream_name":"stdout","time":219.769034144,"data":"{\n"}
+,{"stream_name":"stdout","time":219.769210008,"data":" \"python\": \"3.13.15\",\n"}
+,{"stream_name":"stdout","time":219.769220195,"data":" \"mock\": false,\n"}
+,{"stream_name":"stdout","time":219.769224768,"data":" \"steps\": {\n"}
+,{"stream_name":"stdout","time":219.76922871,"data":"  \"setup_min\": 3.454605452219645,\n"}
+,{"stream_name":"stdout","time":219.769232698,"data":"  \"total_min\": 3.6484955231348675\n"}
+,{"stream_name":"stdout","time":219.76923662,"data":" },\n"}
+,{"stream_name":"stdout","time":219.769240402,"data":" \"nvidia_smi\": \"/bin/sh: 1: nvidia-smi: not found\",\n"}
+,{"stream_name":"stdout","time":219.76924899,"data":" \"pip_install\": \"WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('\u003cpip._vendor.urllib3.connection.HTTPSConnection object at 0x7adf59c23390\u003e: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/zuna/\\nERROR: Could not find a version that satisfies the requirement zuna (from versions: none)\\nERROR: No matching distribution found for zuna\",\n"}
+,{"stream_name":"stdout","time":219.769304119,"data":" \"zuna_version\": \"Traceback (most recent call last):\\n  File \\\"\u003cstring\u003e\\\", line 1, in \u003cmodule\u003e\\n    import zuna; print(zuna.__version__)\\n    ^^^^^^^^^^^\\nModuleNotFoundError: No module named 'zuna'\",\n"}
+,{"stream_name":"stdout","time":219.769310431,"data":" \"torch\": \"2.11.0+cpu\",\n"}
+,{"stream_name":"stdout","time":219.769314408,"data":" \"cuda\": false,\n"}
+,{"stream_name":"stdout","time":219.769318235,"data":" \"ok\": false,\n"}
+,{"stream_name":"stdout","time":219.769322164,"data":" \"error\": \"Traceback (most recent call last):\\n  File \\\"/kaggle/temp_code/jobs/smoke/main.py\\\", line 78, in \u003cmodule\u003e\\n    recs = reconstruct_batch(fifs, hidden, work / \\\"zuna\\\", seed=1, steps=25, gpu=\\\"0\\\")\\n  File \\\"/kaggle/temp_code/src/physprobe/zuna_tools.py\\\", line 33, in reconstruct_batch\\n    from zuna import reconstruct_fif\\nModuleNotFoundError: No module named 'zuna'\\n\"\n"}
+,{"stream_name":"stdout","time":219.769328664,"data":"}\n"}
+,{"stream_name":"stderr","time":223.498882313,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":223.498924328,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":223.855371005,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":223.855400828,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":224.815868623,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":226.055616588,"data":"[NbConvertApp] Writing 284152 bytes to __results__.html\n"}
+]

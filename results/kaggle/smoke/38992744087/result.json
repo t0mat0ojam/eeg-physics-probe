@@ -1,0 +1,15 @@
+{
+ "python": "3.13.15",
+ "mock": false,
+ "steps": {
+  "setup_min": 3.454605452219645,
+  "total_min": 3.6484955231348675
+ },
+ "nvidia_smi": "/bin/sh: 1: nvidia-smi: not found",
+ "pip_install": "WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<pip._vendor.urllib3.connection.HTTPSConnection object at 0x7adf59c23390>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution')': /simple/zuna/\nERROR: Could not find a version that satisfies the requirement zuna (from versions: none)\nERROR: No matching distribution found for zuna",
+ "zuna_version": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import zuna; print(zuna.__version__)\n    ^^^^^^^^^^^\nModuleNotFoundError: No module named 'zuna'",
+ "torch": "2.11.0+cpu",
+ "cuda": false,
+ "ok": false,
+ "error": "Traceback (most recent call last):\n  File \"/kaggle/temp_code/jobs/smoke/main.py\", line 78, in <module>\n    recs = reconstruct_batch(fifs, hidden, work / \"zuna\", seed=1, steps=25, gpu=\"0\")\n  File \"/kaggle/temp_code/src/physprobe/zuna_tools.py\", line 33, in reconstruct_batch\n    from zuna import reconstruct_fif\nModuleNotFoundError: No module named 'zuna'\n"
+}
