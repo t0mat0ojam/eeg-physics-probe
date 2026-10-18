@@ -28,7 +28,8 @@ from physprobe import synth, probe  # noqa: E402
 from pilot_shape import music_predict  # noqa: E402
 
 torch.set_num_threads(2)
-SECS, NPC = 2.0, 4
+import os
+SECS, NPC = float(os.environ.get("NA_SECS", "2.0")), 4
 
 
 def shape_err_seg(P, T):
@@ -76,10 +77,14 @@ def make_set(lf, S1, H, V, n, kinds_ks, rng):
     for kind, k in kinds_ks:
         locs_stream = np.concatenate([rng.permutation(M) for _ in range(k * n // M + 1)])
         for i in range(n):
-            locs = locs_stream[i * k:(i + 1) * k] if kind == "real" else None
-            X = probe.make_trial(lf, k, kind, SECS, rng, S1, locs=locs)
+            if kind == "mix":
+                kind_i = "real" if i % 2 == 0 else "patterns"
+            else:
+                kind_i = kind
+            locs = locs_stream[i * k:(i + 1) * k] if kind_i == "real" else None
+            X = probe.make_trial(lf, k, kind_i, SECS, rng, S1, locs=locs)
             Xr = probe.reref_visible(X, V)
-            out.append(dict(kind=kind, k=k, XV=Xr[V], XH=Xr[H]))
+            out.append(dict(kind=kind, k=k, XV=Xr[V].astype(np.float32), XH=Xr[H].astype(np.float32)))
     return out
 
 
@@ -161,6 +166,8 @@ def main(n_train=6000, n_test=300, train_kind="real"):
                 for m, v in ent.items()), flush=True)
         results[mname] = res
     name = "norm_ablation.json" if train_kind == "real" else f"norm_ablation_train_{train_kind}.json"
+    if SECS != 2.0:
+        name = name.replace(".json", f"_{int(SECS)}s.json")
     (ROOT / "results" / name).write_text(json.dumps(dict(n_train=n_train, n_test=n_test, secs=SECS,
                                                          train_kind=train_kind, results=results), indent=1))
     print(f"done in {(time.time() - t0) / 60:.1f} min")
