@@ -251,3 +251,14 @@ domain; splines and ZUNA-(iii) in the visible-reference domain.
 Q1 does ZUNA-(i) beat splines in NMSE (the released-pipeline claim)? Q2 does ZUNA-(iii) beat splines in NMSE
 without the leak? Q3/Q4 do ZUNA-(ii) and BrainOmni beat splines in shape error? "Beats" = CI of
 (model − splines) entirely below 0; "worse" = entirely above 0; otherwise "no clear difference".
+
+### Probe 2 — OUTCOME (18 Oct 2026)
+
+Colab T4, `results/colab/probe2/` (part A 55 min, part B 51 min; 18 recordings × 4 samples each).
+- **Part A (clean k = 1):** ZUNA(mean of 4) 0.257 vs splines 0.219; difference +0.038 [−0.066, +0.158] →
+  **inconclusive**. Averaging 4 samples lowers ZUNA's error by only 0.027 (single sample 0.284).
+- **Part B (with background activity):** ZUNA(mean of 4) 0.111 vs splines 0.056; +0.056 [+0.022, +0.110] →
+  explanation (b) **not sufficient**: ZUNA remains worse than splines on more realistic recordings
+  (better on 6% of them). Averaging again lowers error by 0.027.
+Reading: neither single-sample noise nor overly clean recordings explains ZUNA's deficit relative to
+splines; the ~0.1 offset found in exploratory 3 is mostly not sampling noise.
