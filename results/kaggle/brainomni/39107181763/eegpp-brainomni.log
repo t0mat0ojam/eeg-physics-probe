@@ -1,0 +1,46 @@
+[{"stream_name":"stdout","time":7.242011129,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.5/47.5 kB 1.4 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":7.302871066,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.8/163.8 kB 4.2 MB/s eta 0:00:00\n"}
+,{"stream_name":"stderr","time":18.936577468,"data":"Cloning into '/kaggle/temp/BrainOmni'...\n"}
+,{"stream_name":"stderr","time":32.150224211,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":34.635957891,"data":"/usr/local/lib/python3.13/dist-packages/torch/nn/utils/weight_norm.py:144: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.\n"}
+,{"stream_name":"stderr","time":34.636042476,"data":"  WeightNorm.apply(module, name, dim)\n"}
+,{"stream_name":"stdout","time":35.188600534,"data":"load report: {'cfg': '...', 'missing': [], 'unexpected': [], 'n_params_loaded': 137}\n"}
+,{"stream_name":"stdout","time":167.852631267,"data":"25/800 units, 2.8 min, model 3.29s/unit\n"}
+,{"stream_name":"stdout","time":265.820149543,"data":"50/800 units, 4.4 min, model 3.37s/unit\n"}
+,{"stream_name":"stdout","time":360.342516322,"data":"75/800 units, 6.0 min, model 3.02s/unit\n"}
+,{"stream_name":"stdout","time":463.725110639,"data":"100/800 units, 7.7 min, model 3.52s/unit\n"}
+,{"stream_name":"stdout","time":568.201654359,"data":"125/800 units, 9.4 min, model 3.05s/unit\n"}
+,{"stream_name":"stdout","time":666.464749865,"data":"150/800 units, 11.1 min, model 3.18s/unit\n"}
+,{"stream_name":"stdout","time":768.711552506,"data":"175/800 units, 12.8 min, model 3.45s/unit\n"}
+,{"stream_name":"stdout","time":866.164631268,"data":"200/800 units, 14.4 min, model 2.83s/unit\n"}
+,{"stream_name":"stdout","time":963.681140303,"data":"225/800 units, 16.0 min, model 3.30s/unit\n"}
+,{"stream_name":"stdout","time":1062.845207271,"data":"250/800 units, 17.7 min, model 2.82s/unit\n"}
+,{"stream_name":"stdout","time":1164.2803018,"data":"275/800 units, 19.4 min, model 3.22s/unit\n"}
+,{"stream_name":"stdout","time":1264.228767563,"data":"300/800 units, 21.0 min, model 3.53s/unit\n"}
+,{"stream_name":"stdout","time":1364.263914094,"data":"325/800 units, 22.7 min, model 3.63s/unit\n"}
+,{"stream_name":"stdout","time":1467.726729583,"data":"350/800 units, 24.4 min, model 3.68s/unit\n"}
+,{"stream_name":"stdout","time":1561.888407828,"data":"375/800 units, 26.0 min, model 2.90s/unit\n"}
+,{"stream_name":"stdout","time":1657.22206578,"data":"400/800 units, 27.6 min, model 2.92s/unit\n"}
+,{"stream_name":"stdout","time":1756.334829805,"data":"425/800 units, 29.3 min, model 3.19s/unit\n"}
+,{"stream_name":"stdout","time":1854.989910356,"data":"450/800 units, 30.9 min, model 3.32s/unit\n"}
+,{"stream_name":"stdout","time":1953.459278294,"data":"475/800 units, 32.5 min, model 3.25s/unit\n"}
+,{"stream_name":"stdout","time":2049.092576486,"data":"500/800 units, 34.1 min, model 3.23s/unit\n"}
+,{"stream_name":"stdout","time":2146.205787946,"data":"525/800 units, 35.7 min, model 3.28s/unit\n"}
+,{"stream_name":"stdout","time":2243.589451264,"data":"550/800 units, 37.4 min, model 3.02s/unit\n"}
+,{"stream_name":"stdout","time":2341.152898816,"data":"575/800 units, 39.0 min, model 3.25s/unit\n"}
+,{"stream_name":"stdout","time":2440.837448389,"data":"600/800 units, 40.7 min, model 3.67s/unit\n"}
+,{"stream_name":"stdout","time":2539.729898386,"data":"625/800 units, 42.3 min, model 2.95s/unit\n"}
+,{"stream_name":"stdout","time":2638.748713571,"data":"650/800 units, 44.0 min, model 3.23s/unit\n"}
+,{"stream_name":"stdout","time":2743.137228366,"data":"675/800 units, 45.7 min, model 3.53s/unit\n"}
+,{"stream_name":"stdout","time":2844.666165659,"data":"700/800 units, 47.4 min, model 3.60s/unit\n"}
+,{"stream_name":"stdout","time":2943.94826563,"data":"725/800 units, 49.0 min, model 3.14s/unit\n"}
+,{"stream_name":"stdout","time":3044.48756332,"data":"750/800 units, 50.7 min, model 3.45s/unit\n"}
+,{"stream_name":"stdout","time":3139.887571761,"data":"775/800 units, 52.3 min, model 2.96s/unit\n"}
+,{"stream_name":"stdout","time":3244.338035869,"data":"800/800 units, 54.1 min, model 4.12s/unit\n"}
+,{"stream_name":"stderr","time":3252.351838229,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":3252.351903322,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":3252.838521591,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":3252.838564558,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":3254.738369038,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":3256.800591045,"data":"[NbConvertApp] Writing 298288 bytes to __results__.html\n"}
+]
