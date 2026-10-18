@@ -191,3 +191,16 @@ on real k = 1 must not exceed IDW's in-run value; otherwise not interpreted. **D
 real vs patterns vs splines) reported regardless.
 **Secondary:** BrainOmni with its own all-channel reference and scaling ("leaky": hidden channels
 contribute to the reference and std) vs leak-proof — size of the leak effect.
+
+### Exploratory 2 — OUTCOME (18 Oct 2026)
+
+`results/norm_ablation_train_patterns.json`. Trained on impossible patterns: **G** scores turn negative as
+predicted (k = 1: patch −0.056 ± 0.012, scattered −0.035 ± 0.004; better than splines on patterns,
+worse on real). **Z** scores stay positive (patch +0.021 ± 0.015, scattered +0.046 ± 0.008): with
+per-channel z-scoring the network is worse than splines on patterns even when trained on them.
+Interpretation: the physics-use score tracks what a globally-scaled model learned, but per-channel
+normalisation by itself produces a small positive score (rougher patterns suffer more when amplitude
+topography is removed). For per-channel-normalised models such as ZUNA the appropriate null is a
+**normalisation-matched, physics-free baseline**, not only linear smoothers. ZUNA's +0.138 exceeds this
+baseline's +0.02 to +0.05 here, but the protocols differ (2 s vs 5 s windows); a matched baseline under
+the probe-1 protocol is the next CPU step.
