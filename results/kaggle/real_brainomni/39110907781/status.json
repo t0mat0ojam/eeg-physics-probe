@@ -1,0 +1,10 @@
+{
+ "job": "real_brainomni",
+ "kernel": "tomandcat25/eegpp-real-brainomni",
+ "accelerator": null,
+ "started": 1792311491.3015428,
+ "quota": "{\"quotaRefreshTime\": \"2026-10-24T00:00:00.000Z\", \"gpuQuota\": {\"timeUsed\": \"18986.913.0s\", \"timeReserved\": \"0s\", \"totalTimeAllowed\": \"21600s\", \"minimumTimeAllowed\": \"21600s\", \"isPayToScaleEnabled\": false, \"hasEverRun\": true}, \"tpuQuota\": {\"timeUsed\": \"0s\", \"timeReserved\": \"0s\", \"totalTimeAllowed\": \"72000s\", \"minimumTimeAllowed\": \"72000s\", \"isPayToScaleEnabled\": false, \"hasEverRun\": false}}",
+ "state": "complete",
+ "finished": 1792318375.9544544,
+ "minutes": 114.74421520233155
+}

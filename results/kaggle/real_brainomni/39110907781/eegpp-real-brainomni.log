@@ -1,0 +1,104 @@
+[{"stream_name":"stdout","time":5.556006372,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.5/47.5 kB 1.4 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":5.611663169,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.8/163.8 kB 3.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stderr","time":14.287778991,"data":"Downloading file 'S001/S001R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S001/S001R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":69.475347169,"data":"Downloading file 'S001/S001R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S001/S001R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":185.628729259,"data":"Downloading file 'S002/S002R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S002/S002R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":240.755579588,"data":"Downloading file 'S002/S002R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S002/S002R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":335.286812562,"data":"Downloading file 'S003/S003R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S003/S003R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":386.075258378,"data":"Downloading file 'S003/S003R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S003/S003R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":488.572726838,"data":"Downloading file 'S004/S004R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S004/S004R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":547.804660602,"data":"Downloading file 'S004/S004R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S004/S004R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":663.576652884,"data":"Downloading file 'S005/S005R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S005/S005R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":712.287383736,"data":"Downloading file 'S005/S005R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S005/S005R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":819.557995168,"data":"Downloading file 'S006/S006R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S006/S006R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":868.774232706,"data":"Downloading file 'S006/S006R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S006/S006R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":973.300911928,"data":"Downloading file 'S007/S007R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S007/S007R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1027.813925072,"data":"Downloading file 'S007/S007R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S007/S007R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1183.291170264,"data":"Downloading file 'S008/S008R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S008/S008R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1230.588623948,"data":"Downloading file 'S008/S008R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S008/S008R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1339.032308256,"data":"Downloading file 'S009/S009R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S009/S009R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1390.353138435,"data":"Downloading file 'S009/S009R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S009/S009R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1489.034629744,"data":"Downloading file 'S010/S010R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S010/S010R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1531.326487247,"data":"Downloading file 'S010/S010R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S010/S010R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1642.919517641,"data":"Downloading file 'S011/S011R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S011/S011R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1696.08793272,"data":"Downloading file 'S011/S011R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S011/S011R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1802.597940244,"data":"Downloading file 'S012/S012R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S012/S012R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1852.804184801,"data":"Downloading file 'S012/S012R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S012/S012R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":1953.308876205,"data":"Downloading file 'S013/S013R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S013/S013R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2009.427325526,"data":"Downloading file 'S013/S013R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S013/S013R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2119.503603431,"data":"Downloading file 'S014/S014R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S014/S014R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2181.155319449,"data":"Downloading file 'S014/S014R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S014/S014R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2286.94489051,"data":"Downloading file 'S015/S015R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S015/S015R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2349.129786199,"data":"Downloading file 'S015/S015R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S015/S015R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2450.4096213,"data":"Downloading file 'S016/S016R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S016/S016R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2498.786559648,"data":"Downloading file 'S016/S016R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S016/S016R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2593.152636645,"data":"Downloading file 'S017/S017R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S017/S017R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2646.749009528,"data":"Downloading file 'S017/S017R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S017/S017R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2741.398920979,"data":"Downloading file 'S018/S018R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S018/S018R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2802.096091125,"data":"Downloading file 'S018/S018R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S018/S018R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2929.338401441,"data":"Downloading file 'S019/S019R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S019/S019R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":2983.043024046,"data":"Downloading file 'S019/S019R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S019/S019R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3096.568407372,"data":"Downloading file 'S020/S020R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S020/S020R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3138.246476351,"data":"Downloading file 'S020/S020R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S020/S020R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3264.09002235,"data":"Downloading file 'S021/S021R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S021/S021R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3309.658664322,"data":"Downloading file 'S021/S021R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S021/S021R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3406.73790508,"data":"Downloading file 'S022/S022R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S022/S022R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3449.190044135,"data":"Downloading file 'S022/S022R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S022/S022R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3567.584746779,"data":"Downloading file 'S023/S023R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S023/S023R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3623.592282054,"data":"Downloading file 'S023/S023R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S023/S023R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3722.323556888,"data":"Downloading file 'S024/S024R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S024/S024R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3785.901663047,"data":"Downloading file 'S024/S024R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S024/S024R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3885.942720081,"data":"Downloading file 'S025/S025R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S025/S025R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":3961.260877065,"data":"Downloading file 'S025/S025R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S025/S025R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4071.720927844,"data":"Downloading file 'S026/S026R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S026/S026R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4122.596382298,"data":"Downloading file 'S026/S026R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S026/S026R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4242.543301782,"data":"Downloading file 'S027/S027R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S027/S027R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4301.546968669,"data":"Downloading file 'S027/S027R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S027/S027R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4433.233053974,"data":"Downloading file 'S028/S028R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S028/S028R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4481.304578985,"data":"Downloading file 'S028/S028R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S028/S028R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4598.256293838,"data":"Downloading file 'S029/S029R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S029/S029R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4639.415553794,"data":"Downloading file 'S029/S029R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S029/S029R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4641.136189725,"data":"Failed to download 'S029R04.edf'. Will attempt the download again 2 more times.\n"}
+,{"stream_name":"stderr","time":4745.02610217,"data":"Downloading file 'S030/S030R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S030/S030R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4783.527002027,"data":"Downloading file 'S030/S030R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S030/S030R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4892.472577475,"data":"Downloading file 'S031/S031R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S031/S031R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":4952.132055092,"data":"Downloading file 'S031/S031R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S031/S031R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5046.237896855,"data":"Downloading file 'S032/S032R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S032/S032R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5099.950775516,"data":"Downloading file 'S032/S032R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S032/S032R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5195.81193654,"data":"Downloading file 'S033/S033R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S033/S033R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5258.817586732,"data":"Downloading file 'S033/S033R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S033/S033R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5362.338616583,"data":"Downloading file 'S034/S034R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S034/S034R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5423.972047379,"data":"Downloading file 'S034/S034R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S034/S034R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5521.503787541,"data":"Downloading file 'S035/S035R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S035/S035R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5577.235652124,"data":"Downloading file 'S035/S035R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S035/S035R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5704.671668266,"data":"Downloading file 'S036/S036R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S036/S036R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5749.372897454,"data":"Downloading file 'S036/S036R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S036/S036R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5862.395492558,"data":"Downloading file 'S037/S037R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S037/S037R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":5908.548886311,"data":"Downloading file 'S037/S037R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S037/S037R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":6031.871208753,"data":"Downloading file 'S038/S038R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S038/S038R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":6105.35858094,"data":"Downloading file 'S038/S038R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S038/S038R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":6240.913338922,"data":"Downloading file 'S039/S039R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S039/S039R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":6241.844443111,"data":"Failed to download 'S039R01.edf'. Will attempt the download again 2 more times.\n"}
+,{"stream_name":"stderr","time":6296.660838241,"data":"Downloading file 'S039/S039R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S039/S039R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":6400.947858121,"data":"Downloading file 'S040/S040R01.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S040/S040R01.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stderr","time":6455.241937988,"data":"Downloading file 'S040/S040R04.edf' from 'https://physionet.org/files/eegmmidb/1.0.0/S040/S040R04.edf' to '/kaggle/temp/eegmmidb/MNE-eegbci-data/files/eegmmidb/1.0.0'.\n"}
+,{"stream_name":"stdout","time":6566.88619256,"data":"80 segments, 0 missing\n"}
+,{"stream_name":"stderr","time":6566.949686279,"data":"Cloning into '/kaggle/temp/BrainOmni'...\n"}
+,{"stream_name":"stderr","time":6576.035441355,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":6577.784912912,"data":"/usr/local/lib/python3.13/dist-packages/torch/nn/utils/weight_norm.py:144: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.\n"}
+,{"stream_name":"stderr","time":6577.784950515,"data":"  WeightNorm.apply(module, name, dim)\n"}
+,{"stream_name":"stdout","time":6594.822291158,"data":"10/80 (109.9 min)\n"}
+,{"stream_name":"stdout","time":6604.250419969,"data":"20/80 (110.1 min)\n"}
+,{"stream_name":"stdout","time":6613.711445364,"data":"30/80 (110.2 min)\n"}
+,{"stream_name":"stdout","time":6623.102161344,"data":"40/80 (110.4 min)\n"}
+,{"stream_name":"stdout","time":6632.560993978,"data":"50/80 (110.5 min)\n"}
+,{"stream_name":"stdout","time":6641.992931281,"data":"60/80 (110.7 min)\n"}
+,{"stream_name":"stdout","time":6651.491570378,"data":"70/80 (110.8 min)\n"}
+,{"stream_name":"stdout","time":6661.005964084,"data":"80/80 (111.0 min)\n"}
+,{"stream_name":"stderr","time":6665.236141966,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":6665.236182785,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":6665.587539897,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":6665.587580117,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":6666.569336339,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":6667.825994099,"data":"[NbConvertApp] Writing 299454 bytes to __results__.html\n"}
+]
