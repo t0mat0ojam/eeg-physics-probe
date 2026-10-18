@@ -222,3 +222,14 @@ normalisation does not by itself produce ZUNA's score. ZUNA's score matches a sm
 normalised network trained on physically possible fields. ZUNA's absolute errors exceed that
 network's by ~0.1 on both kinds (patch: 0.248 vs 0.109 real, 0.479 vs 0.383 patterns), i.e. a roughly
 uniform offset — consistent with single-sample diffusion noise (probe 2, part A, tests this).
+
+### Probe 3 — OUTCOME (18 Oct 2026)
+
+Run: Kaggle CPU (4 cores), 800 units, 54 min; weights loaded with no missing/unexpected keys
+(`results/kaggle/brainomni/`). In-run H1 band (k = 1): −0.013 … +0.039; oracle +0.227.
+**Primary score (k = 1):** BrainOmni +0.048 [+0.017, +0.081] (21% of oracle). Lower bound < +0.039 (not H2);
+upper bound > +0.072 (not H1) → **inconclusive** by the rules.
+**Validity check: FAILED.** Mean shape error on real k = 1 recordings 0.363 vs IDW 0.198 (splines 0.145);
+BrainOmni beats splines on 2% of real k = 1 recordings. Not interpreted.
+Secondary: BrainOmni's own all-channel reference/scaling ("leaky") 0.386 vs leak-proof 0.363 on real k = 1 —
+no sign that it exploits the leak. Dose–response: +0.048 → +0.039 → +0.033 (k = 1, 2, 4).
