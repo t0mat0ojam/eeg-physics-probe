@@ -151,3 +151,21 @@ recordings (2 s segments, leak-proof input), one fixed patch and one fixed scatt
 by shape error on held-out real and patterns recordings (400 per kind and k).
 Predictions: score_G(k=1) > score_Z(k=1); E_G(real) < E_spline(real) < E_Z(real) or E_Z(real) ≥ E_spline(real).
 Exploratory: informs the paper's explanation; not a confirmatory test.
+
+### Exploratory 1 — OUTCOME (18 Oct 2026)
+
+`results/norm_ablation.json` (6000 training / 300 test recordings per kind and k, 2 s segments).
+k = 1, patch mask: splines real 0.183 / patterns 0.290; G 0.110 / 0.298 (score +0.081 ± 0.011);
+Z 0.118 / 0.374 (+0.149 ± 0.016); oracle 0.091 / 0.509 (+0.310 ± 0.025). Scattered mask: G +0.040,
+Z +0.130, oracle +0.247. Scores fade with k for all learned models (patch G: 0.081 → 0.041 → 0.028).
+**Predictions not supported:** score_Z > score_G, and Z beats splines on real patterns (0.118 < 0.183).
+Per-channel normalisation does not by itself explain ZUNA's failure to beat splines. What the run does
+show: small networks trained only on physically possible recordings acquire a clearly positive,
+k-dependent physics-use score (a positive control for the test), and per-channel normalisation shifts
+the profile towards breaking down on impossible patterns.
+
+### Exploratory 2 — negative control (18 Oct 2026, before running)
+
+Same networks trained only on *patterns* (impossible) recordings. If the score measures what a model
+has learned about the field distribution, scores for G and Z should be **negative** (better on the
+kind they were trained on); splines and the oracle are unchanged.

@@ -116,7 +116,7 @@ def predict(net, XV, mode):
         return net(torch.tensor(F, dtype=torch.float32)).numpy().T
 
 
-def main(n_train=6000, n_test=300):
+def main(n_train=6000, n_test=300, train_kind="real"):
     t0 = time.time()
     lf = synth.build_free_leadfield()
     L, pos = lf["L"], lf["pos"]
@@ -130,7 +130,7 @@ def main(n_train=6000, n_test=300):
         R = probe.reref_matrix(C, V)
         Lr = np.einsum("cd,dmi->cmi", R, L)
         rng = np.random.default_rng(7 if mname == "patch" else 8)
-        trainset = make_set(lf, S1, H, V, n_train // 3, [("real", 1), ("real", 2), ("real", 4)], rng)
+        trainset = make_set(lf, S1, H, V, n_train // 3, [(train_kind, 1), (train_kind, 2), (train_kind, 4)], rng)
         nets = {}
         for mode in ("G", "Z"):
             nets[mode], loss = train(trainset, mode)
@@ -160,11 +160,12 @@ def main(n_train=6000, n_test=300):
                 f"{m}: real {v['real']:.3f} patt {v['patterns']:.3f} score {v['score']:+.3f}±{v['score_se']:.3f}"
                 for m, v in ent.items()), flush=True)
         results[mname] = res
-    (ROOT / "results" / "norm_ablation.json").write_text(json.dumps(dict(n_train=n_train, n_test=n_test,
-                                                                       secs=SECS, results=results), indent=1))
+    name = "norm_ablation.json" if train_kind == "real" else f"norm_ablation_train_{train_kind}.json"
+    (ROOT / "results" / name).write_text(json.dumps(dict(n_train=n_train, n_test=n_test, secs=SECS,
+                                                         train_kind=train_kind, results=results), indent=1))
     print(f"done in {(time.time() - t0) / 60:.1f} min")
 
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    main(int(a[0]) if a else 6000, int(a[1]) if len(a) > 1 else 300)
+    main(int(a[0]) if a else 6000, int(a[1]) if len(a) > 1 else 300, a[2] if len(a) > 2 else "real")
