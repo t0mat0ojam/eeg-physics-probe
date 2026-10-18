@@ -204,3 +204,21 @@ topography is removed). For per-channel-normalised models such as ZUNA the appro
 **normalisation-matched, physics-free baseline**, not only linear smoothers. ZUNA's +0.138 exceeds this
 baseline's +0.02 to +0.05 here, but the protocols differ (2 s vs 5 s windows); a matched baseline under
 the probe-1 protocol is the next CPU step.
+
+### Exploratory 3 — normalisation-matched baselines under the probe-1 protocol (18 Oct 2026)
+
+5 s segments (ZUNA's window), same two masks as ZUNA's mask 0 (scattered) and mask 3 (patch).
+k = 1 physics-use scores, Z = per-channel-normalised network (ZUNA-like), G = globally scaled:
+
+| trained on | Z patch | Z scattered | G patch | G scattered |
+|---|---|---|---|---|
+| surrogate (covariance only, physics-free) | +0.003 ± 0.015 | +0.004 ± 0.007 | −0.038 | −0.037 |
+| patterns (impossible) | +0.039 | +0.036 | −0.030 | −0.031 |
+| real (possible) | +0.147 ± 0.016 | +0.129 ± 0.009 | +0.081 | +0.033 |
+| **ZUNA (probe 1, same masks)** | **+0.137 ± 0.054** | **+0.129 ± 0.037** | | |
+
+Reading (exploratory): the normalisation-matched physics-free baseline is ≈ 0, so per-channel
+normalisation does not by itself produce ZUNA's score. ZUNA's score matches a small per-channel-
+normalised network trained on physically possible fields. ZUNA's absolute errors exceed that
+network's by ~0.1 on both kinds (patch: 0.248 vs 0.109 real, 0.479 vs 0.383 patterns), i.e. a roughly
+uniform offset — consistent with single-sample diffusion noise (probe 2, part A, tests this).
