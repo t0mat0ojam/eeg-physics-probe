@@ -74,8 +74,12 @@ def main():
     kdir = ROOT / "build" / "kernel" / a.job
     kdir.mkdir(parents=True, exist_ok=True)
     (kdir / "run.py").write_text(BOOTSTRAP.format(payload=build_payload(a.job), job=a.job))
+    jk = ROOT / "jobs" / a.job / "kaggle.json"            # optional per-job settings, e.g. {"gpu": false}
+    use_gpu = json.loads(jk.read_text()).get("gpu", True) if jk.exists() else True
+    if not use_gpu:
+        a.accelerator = None
     meta = dict(id=f"{user}/{slug}", title=slug, code_file="run.py", language="python",
-                kernel_type="script", is_private=True, enable_gpu=True, enable_tpu=False,
+                kernel_type="script", is_private=True, enable_gpu=use_gpu, enable_tpu=False,
                 enable_internet=True, dataset_sources=[], competition_sources=[],
                 kernel_sources=[], model_sources=[])
     (kdir / "kernel-metadata.json").write_text(json.dumps(meta, indent=1))
@@ -85,6 +89,8 @@ def main():
     try:
         resp = api.kernels_push(str(kdir), timeout=str(int(a.max_hours * 3600)), acc=a.accelerator)
     except Exception as e:   # unknown accelerator name etc. -> retry with the default GPU
+        if not use_gpu:
+            raise
         print(f"push with accelerator {a.accelerator} failed ({e}); retrying with default GPU", flush=True)
         status["accelerator"] = "default"
         resp = api.kernels_push(str(kdir), timeout=str(int(a.max_hours * 3600)), acc=None)

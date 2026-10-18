@@ -169,3 +169,25 @@ the profile towards breaking down on impossible patterns.
 Same networks trained only on *patterns* (impossible) recordings. If the score measures what a model
 has learned about the field distribution, scores for G and Z should be **negative** (better on the
 kind they were trained on); splines and the oracle are unchanged.
+
+## Probe 3 — BrainOmni BrainTokenizer (18 Oct 2026, before the run)
+
+Model: BrainOmni (NeurIPS 2025) BrainTokenizer, HF `OpenTSLab/BrainOmni` `braintokenizer/`, loaded in
+float32, eval mode; missing/unexpected keys recorded (run is not interpreted if decoder weights are
+missing). Pretrained to rebuild all channels from 75% of them; output = per-channel waveform z-scored
+per 2 s window (shape only), so the amplitude-free shape score applies directly.
+**Leak-proof use:** encoder sees visible electrodes only; reference = average of visible electrodes;
+one global std from visible electrodes (BrainOmni's own scaling preserves relative amplitudes);
+hidden electrodes queried by position (all 64 positions centred/scaled as in BrainOmni). 96 Hz
+low-pass (BrainOmni band); shape error computed per 2 s window for every method.
+**Recordings and masks:** identical design to probe 1 (`jobs/brainomni/config.json`, seed 2027;
+k = 1: 200 + 200, k = 2 and 4: 100 + 100). Run on Kaggle CPU.
+**In-run references:** H1 band = range of scores of IDW, best linear, smoothed linear (splines = 0);
+H2 = RAP-MUSIC oracle; computed on the same recordings with the same 2 s windows.
+**Decision rules (k = 1, all masks), as in probe 1:** H2 if lower CI bound > top of the in-run H1 band
+and score(k=1) > score(k=4); H1 if upper CI bound < top of band + 0.033 (the same ~1/8-of-oracle margin
+scaled: 0.060 − 0.027 in probe 1); otherwise inconclusive. **Validity:** BrainOmni's mean shape error
+on real k = 1 must not exceed IDW's in-run value; otherwise not interpreted. **Decomposition** (error on
+real vs patterns vs splines) reported regardless.
+**Secondary:** BrainOmni with its own all-channel reference and scaling ("leaky": hidden channels
+contribute to the reference and std) vs leak-proof — size of the leak effect.
