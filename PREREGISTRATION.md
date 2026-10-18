@@ -233,3 +233,21 @@ upper bound > +0.072 (not H1) → **inconclusive** by the rules.
 BrainOmni beats splines on 2% of real k = 1 recordings. Not interpreted.
 Secondary: BrainOmni's own all-channel reference/scaling ("leaky") 0.386 vs leak-proof 0.363 on real k = 1 —
 no sign that it exploits the leak. Dose–response: +0.048 → +0.039 → +0.033 (k = 1, 2, 4).
+
+## Probe 4 — real EEG: do the models beat splines once the leak is closed? (18 Oct 2026, before any run)
+
+**Data.** EEGMMIDB (PhysioNet, 64 ch, 160 Hz), subjects 1–40, runs R01 (eyes-open rest) and R04 (motor
+task): one 10 s segment per run (seconds 10–20), resampled to 256 Hz, 0.5 Hz high-pass on the whole run
+before cutting → 80 segments. Same six masks as probes 1–3, cycled over segments.
+**Methods.** Splines; best linear predictor with covariance pooled from the *other* subjects' segments
+(leave-one-subject-out); BrainOmni (leak-proof, as probe 3; Kaggle CPU); ZUNA (GPU, later run):
+(i) *released pipeline* — average reference over all 64 channels with the true values left in the hidden
+channels (the leak); (ii) *leak-proof* — visible reference, hidden zero-filled; (iii) *honest amplitude* —
+visible reference, hidden channels filled with the spline prediction (amplitude from visible data only).
+**Scores.** Shape error (1 − r) per model window (5 s for ZUNA, 2 s for BrainOmni; every method scored in
+the same windows). NMSE where amplitude is meaningful: splines and ZUNA-(i) in the all-channel-reference
+domain; splines and ZUNA-(iii) in the visible-reference domain.
+**Questions and rules** (paired over segments, 95% bootstrap CI of the mean difference):
+Q1 does ZUNA-(i) beat splines in NMSE (the released-pipeline claim)? Q2 does ZUNA-(iii) beat splines in NMSE
+without the leak? Q3/Q4 do ZUNA-(ii) and BrainOmni beat splines in shape error? "Beats" = CI of
+(model − splines) entirely below 0; "worse" = entirely above 0; otherwise "no clear difference".
