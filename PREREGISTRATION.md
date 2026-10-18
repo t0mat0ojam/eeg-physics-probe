@@ -137,3 +137,17 @@ Run on Colab (1 × T4), `jobs/probe2/config_A.json`, `config_B.json`; same leak-
 - Part B: same rule for explanation (b) "recordings unlike training data".
 - Otherwise inconclusive (n is small; this is a diagnostic, not a confirmatory test).
 Neither part changes the probe-1 outcome recorded above.
+
+## Exploratory 1 — does per-channel normalisation explain ZUNA's profile? (18 Oct 2026, before running; CPU only)
+
+Hypothesis: ZUNA z-scores every channel separately, which discards the amplitude topography — the
+information a forward model needs to locate a source. A learned infill model trained only on
+physically possible recordings should then (G, global scaling) acquire an oracle-like profile
+(beats splines on possible patterns, positive physics-use score) while (Z, per-channel z-scoring,
+ZUNA-like) should lose most of its advantage on possible patterns.
+Setup (`experiments/norm_ablation.py`): identical small networks (per-time-point MLP + segment
+context from the leading principal components of the visible data), trained on real k ∈ {1,2,4}
+recordings (2 s segments, leak-proof input), one fixed patch and one fixed scattered mask; evaluated
+by shape error on held-out real and patterns recordings (400 per kind and k).
+Predictions: score_G(k=1) > score_Z(k=1); E_G(real) < E_spline(real) < E_Z(real) or E_Z(real) ≥ E_spline(real).
+Exploratory: informs the paper's explanation; not a confirmatory test.
