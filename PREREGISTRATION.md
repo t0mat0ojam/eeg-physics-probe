@@ -262,3 +262,14 @@ Colab T4, `results/colab/probe2/` (part A 55 min, part B 51 min; 18 recordings �
   (better on 6% of them). Averaging again lowers error by 0.027.
 Reading: neither single-sample noise nor overly clean recordings explains ZUNA's deficit relative to
 splines; the ~0.1 offset found in exploratory 3 is mostly not sampling noise.
+
+### Probe 4 — OUTCOME, BrainOmni part (18 Oct 2026)
+
+Kaggle CPU, 80 segments (EEGMMIDB subjects 1–40, R01 + R04, all downloaded), weights complete
+(`results/kaggle/real_brainomni/`). Shape error, 2 s windows (5 s windows agree):
+splines 0.279, best linear (leave-one-subject-out covariance) 0.225, BrainOmni leak-proof 0.390,
+BrainOmni own all-channel pipeline 0.419.
+- **Q4 BrainOmni vs splines: WORSE** — +0.111 [+0.081, +0.146]; better on 15% of segments.
+- Best linear vs splines: beats splines, −0.054 [−0.063, −0.044]; better on 94%.
+- BrainOmni's own pipeline is worse still (+0.140 [+0.110, +0.175]).
+Same pattern in rest (R01) and task (R04) runs. ZUNA part (Q1–Q3) pending a GPU.
